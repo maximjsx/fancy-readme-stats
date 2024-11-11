@@ -802,12 +802,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }
 
   const card = new Card({
-    customTitle: custom_title,
-    defaultTitle: i18n.t("langcard.title"),
+    title: custom_title,
     width,
     height,
     border_radius,
-    colors,
   });
 
   if (disable_animations) {

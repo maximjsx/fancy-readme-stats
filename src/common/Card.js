@@ -105,33 +105,80 @@ class Card {
   renderParallaxBackground() {
     const backgrounds = {
       beach: `
-        <g class="parallax-background">
-          <!-- Sky Layer -->
-          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#87CEEB" class="sky"/>
-          
-          <!-- Cloud Layer -->
-          <g class="clouds">
-            <path d="M20,40 Q30,35 40,40 Q50,35 60,40" stroke="white" stroke-width="15" fill="none" class="cloud"/>
-            <path d="M80,30 Q90,25 100,30 Q110,25 120,30" stroke="white" stroke-width="15" fill="none" class="cloud"/>
-          </g>
-          
-          <!-- Sea Layer -->
-          <path d="M0,${this.height * 0.6} 
-                   Q${this.width * 0.25},${this.height * 0.55} 
-                   ${this.width * 0.5},${this.height * 0.6} 
-                   Q${this.width * 0.75},${this.height * 0.65} 
-                   ${this.width},${this.height * 0.6}" 
-                fill="#0077be" class="sea"/>
-          
-          <!-- Sand Layer -->
-          <path d="M0,${this.height} 
-                   L0,${this.height * 0.7} 
-                   Q${this.width * 0.5},${this.height * 0.65} 
-                   ${this.width},${this.height * 0.7} 
-                   L${this.width},${this.height}" 
-                fill="#f4d03f" class="sand"/>
+      <g class="parallax-background">
+        <!-- Sky Layer with Gradient (Static) -->
+        <defs>
+          <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a007b"/>
+            <stop offset="100%" stop-color="#d46a00"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#skyGradient)" class="sky"/>
+
+        <!-- Stars Layer with Blinking Effect -->
+        <g class="stars">
+          ${Array.from(
+            { length: 20 },
+            () => `
+              <circle cx="${Math.random() * this.width}"
+                      cy="${Math.random() * this.height * 0.3}"
+                      r="1"
+                      fill="white"
+                      class="star"/>
+            `,
+          ).join("")}
         </g>
-      `,
+
+        <!-- Cloud Layer with Clouds -->
+        <g class="clouds">
+          <path d="M20,40 Q25,30 40,35 Q55,20 75,35 Q90,30 100,40 Q110,30 120,40"
+                stroke="white" stroke-width="18" fill="none" opacity="0.4" class="cloud"/>
+          <path d="M160,50 Q170,35 190,40 Q210,30 230,40 Q250,35 260,50"
+                stroke="white" stroke-width="18" fill="none" opacity="0.4" class="cloud"/>
+          <path d="M280,25 Q295,10 310,20 Q325,5 340,20 Q355,10 370,25"
+                stroke="white" stroke-width="18" fill="none" opacity="0.4" class="cloud"/>
+          <path d="M60,80 Q70,65 90,70 Q110,60 130,70 Q150,65 160,80"
+                stroke="white" stroke-width="18" fill="none" opacity="0.4" class="cloud"/>
+        </g>
+<!-- Sea Layers -->
+
+<!-- Top Wave Layer -->
+<path d="M0,${this.height * 0.6}
+         ${Array.from({
+           length: 50,
+         })
+           .map((_, i) => {
+             const x = (this.width / 40) * i;
+             const y = this.height * 0.6 + Math.sin(x * 0.3) * 10;
+             return `${i === 0 ? "M" : "L"}${x},${y}`;
+           })
+           .join(" ")} 
+         L${this.width},${this.height} L0,${this.height} Z"
+      fill="#0079a1" class="sea"/>
+
+
+<path d="M0,${this.height * 0.8}
+         ${Array.from({
+           length: 35,
+         })
+           .map((_, i) => {
+             const x = (this.width / 25) * i;
+             const y = this.height * 0.8 + Math.sin(x * 0.2) * 5;
+             return `${i === 0 ? "M" : "L"}${x},${y}`;
+           })
+           .join(" ")} 
+         L${this.width},${this.height} L0,${this.height} Z"
+      fill="#b68a00" class="sand"/>
+
+        <!-- Sand Layer with Parallax Movement -->
+        <path d="M0,${this.height}
+                 L0,${this.height * 0.8}
+                 Q${this.width * 0.5},${this.height * 0.75}
+                 ${this.width},${this.height * 0.8}
+                 L${this.width},${this.height}"
+              fill="#b68a00" class="sand"/>
+      </g>
+    `,
 
       forest: `
         <g class="parallax-background">
@@ -199,55 +246,46 @@ class Card {
 
   getAnimations() {
     return `
-      /* Base Animations */
-      @keyframes scaleInAnimation {
-        from { transform: translate(-5px, 5px) scale(0); }
-        to { transform: translate(-5px, 5px) scale(1); }
-      }
-      @keyframes fadeInAnimation {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      
-      /* Parallax Animations */
-      @keyframes cloudFloat {
-        from { transform: translateX(-10px); }
-        to { transform: translateX(${this.width + 10}px); }
-      }
-      @keyframes wave {
-        0% { transform: translateX(0) translateY(0); }
-        50% { transform: translateX(-5px) translateY(2px); }
-        100% { transform: translateX(0) translateY(0); }
-      }
-      @keyframes starTwinkle {
-        0% { opacity: 1; }
-        50% { opacity: 0.3; }
-        100% { opacity: 1; }
-      }
-      
-      /* Theme-specific styles */
-      .cloud {
-        animation: cloudFloat 20s linear infinite;
-      }
-      .sea {
-        animation: wave 5s ease-in-out infinite;
-      }
-      .star {
-        animation: starTwinkle 2s ease-in-out infinite;
-      }
-      .tree {
-        transition: transform 0.3s ease;
-      }
-      .tree:hover {
-        transform: scale(1.05);
-      }
-      .building {
-        transition: transform 0.3s ease;
-      }
-      .building:hover {
-        transform: translateY(-5px);
-      }
-    `;
+    /* Base Animations */
+    @keyframes scaleInAnimation {
+      from { transform: translate(-5px, 5px) scale(0); }
+      to { transform: translate(-5px, 5px) scale(1); }
+    }
+    @keyframes fadeInAnimation {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Parallax Animations */
+    @keyframes move {
+      from { transform: translateX(-400px); }
+      to { transform: translateX(${this.width + 20}px); }
+    }
+
+    @keyframes starTwinkle {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    @keyframes sandFloat {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
+    }
+
+    /* Theme-specific styles */
+    .cloud {
+      animation: move 20s linear infinite;
+    }
+    .sea {
+      animation: move 10s linear infinite;
+    }
+    .sand {
+      animation: move 5s linear infinite;
+    }
+    .star {
+      animation: starTwinkle 2s ease-in-out infinite;
+    }
+  `;
   }
 
   render(body) {

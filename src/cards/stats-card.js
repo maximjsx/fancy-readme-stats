@@ -163,14 +163,16 @@ const renderStatsCard = (stats, options = {}) => {
     text_color,
     text_bold = true,
     bg_color,
-    theme = "default",
+    theme = "beach",
     custom_title,
     border_radius,
     border_color,
     number_format = "short",
     disable_animations = false,
     rank_icon = "default",
-    show = [],
+    title_text,
+    description_text,
+    email,
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -350,7 +352,7 @@ const renderStatsCard = (stats, options = {}) => {
     width: cardWidth,
     height,
     border_radius,
-    theme: "beach",
+    theme: theme,
   });
 
   card.setHideBorder(hide_border);
@@ -404,7 +406,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="white"
   >
-    ${custom_title ? custom_title : name}
+    ${title_text ? title_text : name}
   </text>
 `;
 
@@ -419,7 +421,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="white"
   >
-    ${"A very long description about me"}
+    ${description_text ? description_text : ""}
   </text>
 `;
 
@@ -434,7 +436,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="white"
   >
-    ${"example@email.com"}
+    ${email ? email : ""}
   </text>
 `;
 

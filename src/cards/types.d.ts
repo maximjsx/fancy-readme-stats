@@ -14,7 +14,6 @@ export type CommonOptions = {
 };
 
 export type StatCardOptions = CommonOptions & {
-  hide: string[];
   show_icons: boolean;
   hide_title: boolean;
   card_width: number;
@@ -27,7 +26,9 @@ export type StatCardOptions = CommonOptions & {
   ring_color: string;
   text_bold: boolean;
   rank_icon: RankIcon;
-  show: string[];
+  title_text: string;
+  email: string,
+  description_text: string;
 };
 
 export type RepoCardOptions = CommonOptions & {
