@@ -1,5 +1,8 @@
 # Fancy GitHub Profile Cards
 
+> [!CAUTION]  
+> Do not use this project yet I just started and most things do not work rn
+
 A strongly minimized fork of https://github.com/anuraghazra/github-readme-stats
 
 Customizable & animated GitHub profile cards displaying stats, contact info & more.   
