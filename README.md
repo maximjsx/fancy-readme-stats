@@ -27,17 +27,9 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 ![GitHub Profile Card](https://fancy-readme-stats.vercel.app/api?card=1&username=YOUR_USERNAME&theme=THEME_NAME&email=YOUR_EMAIL)
 ```
 
-Themes:
-- **beach** 
-- **forest** 
-- **city** 
+### Themes:
 
-> Themes can be applied to any card
-
-Cards:
-
-1:
-![Card-1](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=maxim@nextfight.net)
+![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=maxim@nextfight.net&description=beach&title=Theme)
 
 
 ## Contributing
