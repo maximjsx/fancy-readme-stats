@@ -1,6 +1,5 @@
 // @ts-check
 import { Card } from "../common/Card.js";
-import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
 import {
   CustomError,
@@ -10,7 +9,6 @@ import {
   kFormatter,
   measureText,
 } from "../common/utils.js";
-import { statCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;
@@ -19,22 +17,6 @@ const RANK_CARD_DEFAULT_WIDTH = 450;
 const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
 
-/**
- * Create a stats card text item.
- *
- * @param {object} createTextNodeParams Object that contains the createTextNode parameters.
- * @param {string} createTextNodeParams.icon The icon to display.
- * @param {string} createTextNodeParams.label The label to display.
- * @param {number} createTextNodeParams.value The value to display.
- * @param {string} createTextNodeParams.id The id of the stat.
- * @param {string=} createTextNodeParams.unitSymbol The unit symbol of the stat.
- * @param {number} createTextNodeParams.index The index of the stat.
- * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
- * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
- * @param {boolean} createTextNodeParams.bold Whether to bold the label.
- * @param {string} createTextNodeParams.number_format The format of numbers on card.
- * @returns {string} The stats card text item SVG object.
- */
 const createTextNode = ({
   icon,
   label,
@@ -62,9 +44,7 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat ${
-        bold ? " bold" : "not_bold"
-      }" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat ${bold ? " bold" : "not_bold"}" ${labelOffset} y="12.5">${label}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
@@ -75,33 +55,16 @@ const createTextNode = ({
   `;
 };
 
-/**
- * Calculates progress along the boundary of the circle, i.e. its circumference.
- *
- * @param {number} value The rank value to calculate progress for.
- * @returns {number} Progress value.
- */
 const calculateCircleProgress = (value) => {
   const radius = 40;
   const c = Math.PI * (radius * 2);
 
-  if (value < 0) {
-    value = 0;
-  }
-  if (value > 100) {
-    value = 100;
-  }
+  if (value < 0) value = 0;
+  if (value > 100) value = 100;
 
   return ((100 - value) / 100) * c;
 };
 
-/**
- * Retrieves the animation to display progress along the circumference of circle
- * from the beginning to the given value in a clockwise direction.
- *
- * @param {{progress: number}} progress The progress value to animate to.
- * @returns {string} Progress animation css.
- */
 const getProgressAnimation = ({ progress }) => {
   return `
     @keyframes rankAnimation {
@@ -115,20 +78,7 @@ const getProgressAnimation = ({ progress }) => {
   `;
 };
 
-/**
- * Retrieves CSS styles for a card.
- *
- * @param {Object} colors The colors to use for the card.
- * @param {string} colors.titleColor The title color.
- * @param {string} colors.textColor The text color.
- * @param {string} colors.iconColor The icon color.
- * @param {string} colors.ringColor The ring color.
- * @param {boolean} colors.show_icons Whether to show icons.
- * @param {number} colors.progress The progress value to animate to.
- * @returns {string} Card CSS styles.
- */
 const getStyles = ({
-  // eslint-disable-next-line no-unused-vars
   titleColor,
   textColor,
   iconColor,
@@ -141,7 +91,6 @@ const getStyles = ({
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
     @supports(-moz-appearance: auto) {
-      /* Selector detects Firefox */
       .stat { font-size:12px; }
     }
     .stagger {
@@ -187,18 +136,6 @@ const getStyles = ({
   `;
 };
 
-/**
- * @typedef {import('../fetchers/types').StatsData} StatsData
- * @typedef {import('./types').StatCardOptions} StatCardOptions
- */
-
-/**
- * Renders the stats card.
- *
- * @param {StatsData} stats The stats data.
- * @param {Partial<StatCardOptions>} options The card options.
- * @returns {string} The stats card SVG object.
- */
 const renderStatsCard = (stats, options = {}) => {
   const {
     name,
@@ -234,7 +171,6 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     border_color,
     number_format = "short",
-    locale,
     disable_animations = false,
     rank_icon = "default",
     show = [],
@@ -242,7 +178,6 @@ const renderStatsCard = (stats, options = {}) => {
 
   const lheight = parseInt(String(line_height), 10);
 
-  // returns theme based colors with proper overrides and defaults
   const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
@@ -254,42 +189,32 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-    ? ""
-    : "s";
-  const i18n = new I18n({
-    locale,
-    translations: statCardLocales({ name, apostrophe }),
-  });
-
-  // Meta data for creating text nodes with createTextNode function
-  const STATS = {};
-
-  STATS.stars = {
-    icon: icons.star,
-    label: i18n.t("statcard.totalstars"),
-    value: totalStars,
-    id: "stars",
-  };
-  STATS.commits = {
-    icon: icons.commits,
-    label: `${i18n.t("statcard.commits")}${
-      include_all_commits ? "" : ` (${new Date().getFullYear()})`
-    }`,
-    value: totalCommits,
-    id: "commits",
-  };
-  STATS.prs = {
-    icon: icons.prs,
-    label: i18n.t("statcard.prs"),
-    value: totalPRs,
-    id: "prs",
+  // Meta data for creating text nodes
+  const STATS = {
+    stars: {
+      icon: icons.star,
+      label: "Total Stars",
+      value: totalStars,
+      id: "stars",
+    },
+    commits: {
+      icon: icons.commits,
+      label: `Commits${include_all_commits ? "" : ` (${new Date().getFullYear()})`}`,
+      value: totalCommits,
+      id: "commits",
+    },
+    prs: {
+      icon: icons.prs,
+      label: "Pull Requests",
+      value: totalPRs,
+      id: "prs",
+    },
   };
 
   if (show.includes("prs_merged")) {
     STATS.prs_merged = {
       icon: icons.prs_merged,
-      label: i18n.t("statcard.prs-merged"),
+      label: "PRs Merged",
       value: totalPRsMerged,
       id: "prs_merged",
     };
@@ -298,7 +223,7 @@ const renderStatsCard = (stats, options = {}) => {
   if (show.includes("prs_merged_percentage")) {
     STATS.prs_merged_percentage = {
       icon: icons.prs_merged_percentage,
-      label: i18n.t("statcard.prs-merged-percentage"),
+      label: "PRs Merged Percentage",
       value: mergedPRsPercentage.toFixed(2),
       id: "prs_merged_percentage",
       unitSymbol: "%",
@@ -308,7 +233,7 @@ const renderStatsCard = (stats, options = {}) => {
   if (show.includes("reviews")) {
     STATS.reviews = {
       icon: icons.reviews,
-      label: i18n.t("statcard.reviews"),
+      label: "Reviews",
       value: totalReviews,
       id: "reviews",
     };
@@ -316,7 +241,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   STATS.issues = {
     icon: icons.issues,
-    label: i18n.t("statcard.issues"),
+    label: "Issues",
     value: totalIssues,
     id: "issues",
   };
@@ -324,15 +249,16 @@ const renderStatsCard = (stats, options = {}) => {
   if (show.includes("discussions_started")) {
     STATS.discussions_started = {
       icon: icons.discussions_started,
-      label: i18n.t("statcard.discussions-started"),
+      label: "Discussions Started",
       value: totalDiscussionsStarted,
       id: "discussions_started",
     };
   }
+
   if (show.includes("discussions_answered")) {
     STATS.discussions_answered = {
       icon: icons.discussions_answered,
-      label: i18n.t("statcard.discussions-answered"),
+      label: "Discussions Answered",
       value: totalDiscussionsAnswered,
       id: "discussions_answered",
     };
@@ -340,34 +266,14 @@ const renderStatsCard = (stats, options = {}) => {
 
   STATS.contribs = {
     icon: icons.contribs,
-    label: i18n.t("statcard.contribs"),
+    label: "Contributed to",
     value: contributedTo,
     id: "contribs",
   };
 
-  const longLocales = [
-    "cn",
-    "es",
-    "fr",
-    "pt-br",
-    "ru",
-    "uk-ua",
-    "id",
-    "ml",
-    "my",
-    "pl",
-    "de",
-    "nl",
-    "zh-tw",
-    "uz",
-  ];
-  const isLongLocale = locale ? longLocales.includes(locale) : false;
-
-  // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
-      // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({
         icon: STATS[key].icon,
         label: STATS[key].label,
@@ -376,7 +282,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
-        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
+        shiftValuePos: 79.01,
         bold: text_bold,
         number_format,
       }),
@@ -389,14 +295,11 @@ const renderStatsCard = (stats, options = {}) => {
     );
   }
 
-  // Calculate the card height depending on how many items there are
-  // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
     45 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : statItems.length ? 150 : 180,
   );
 
-  // the lower the user's percentile the better
   const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
     titleColor,
@@ -408,28 +311,13 @@ const renderStatsCard = (stats, options = {}) => {
   });
 
   const calculateTextWidth = () => {
-    return measureText(
-      custom_title
-        ? custom_title
-        : statItems.length
-          ? i18n.t("statcard.title")
-          : i18n.t("statcard.ranktitle"),
-    );
+    return measureText(custom_title ? custom_title : "Stats");
   };
 
-  /*
-    When hide_rank=true, the minimum card width is 270 px + the title length and padding.
-    When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
-    Numbers are picked by looking at existing dimensions on production.
-  */
-  const iconWidth = show_icons && statItems.length ? 16 + /* padding */ 1 : 0;
+  const iconWidth = show_icons && statItems.length ? 16 + 1 : 0;
   const minCardWidth =
     (hide_rank
-      ? clampValue(
-          50 /* padding */ + calculateTextWidth() * 2,
-          CARD_MIN_WIDTH,
-          Infinity,
-        )
+      ? clampValue(50 + calculateTextWidth() * 2, CARD_MIN_WIDTH, Infinity)
       : statItems.length
         ? RANK_CARD_MIN_WIDTH
         : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
@@ -449,13 +337,11 @@ const renderStatsCard = (stats, options = {}) => {
   }
 
   const card = new Card({
-    customTitle: custom_title,
-    defaultTitle: statItems.length
-      ? i18n.t("statcard.title")
-      : i18n.t("statcard.ranktitle"),
+    title: custom_title ? custom_title : "Stats",
     width,
     height,
     border_radius,
+    theme: "beach",
     colors: {
       titleColor,
       textColor,
@@ -473,16 +359,6 @@ const renderStatsCard = (stats, options = {}) => {
     card.disableAnimations();
   }
 
-  /**
-   * Calculates the right rank circle translation values such that the rank circle
-   * keeps respecting the following padding:
-   *
-   * width > RANK_CARD_DEFAULT_WIDTH: The default right padding of 70 px will be used.
-   * width < RANK_CARD_DEFAULT_WIDTH: The left and right padding will be enlarged
-   *   equally from a certain minimum at RANK_CARD_MIN_WIDTH.
-   *
-   * @returns {number} - Rank circle translation value.
-   */
   const calculateRankXTranslation = () => {
     if (statItems.length) {
       const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
@@ -497,7 +373,6 @@ const renderStatsCard = (stats, options = {}) => {
     }
   };
 
-  // Conditionally rendered elements
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle"
@@ -511,14 +386,11 @@ const renderStatsCard = (stats, options = {}) => {
         </g>
       </g>`;
 
-  // Accessibility Labels
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
       if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${STATS[key].value}`;
+        return `${STATS[key].label} ${STATS[key].value}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })

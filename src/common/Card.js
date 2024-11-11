@@ -1,50 +1,22 @@
 import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
-  /**
-   * Creates a new card instance.
-   *
-   * @param {object} args Card arguments.
-   * @param {number?=} args.width Card width.
-   * @param {number?=} args.height Card height.
-   * @param {number?=} args.border_radius Card border radius.
-   * @param {string?=} args.customTitle Card custom title.
-   * @param {string?=} args.defaultTitle Card default title.
-   * @param {string?=} args.titlePrefixIcon Card title prefix icon.
-   * @param {object?=} args.colors Card colors arguments.
-   * @param {string} args.colors.titleColor Card title color.
-   * @param {string} args.colors.textColor Card text color.
-   * @param {string} args.colors.iconColor Card icon color.
-   * @param {string|Array} args.colors.bgColor Card background color.
-   * @param {string} args.colors.borderColor Card border color.
-   * @returns {Card} Card instance.
-   */
   constructor({
     width = 100,
     height = 100,
     border_radius = 4.5,
+    theme = "beach",
     colors = {},
-    customTitle,
-    defaultTitle = "",
-    titlePrefixIcon,
+    title = "Stats",
+    titlePrefixIcon = null,
   }) {
     this.width = width;
     this.height = height;
-
-    this.hideBorder = false;
-    this.hideTitle = false;
-
+    this.theme = theme;
     this.border_radius = border_radius;
-
-    // returns theme based colors with proper overrides and defaults
     this.colors = colors;
-    this.title =
-      customTitle === undefined
-        ? encodeHTML(defaultTitle)
-        : encodeHTML(customTitle);
-
+    this.title = title;
     this.css = "";
-
     this.paddingX = 25;
     this.paddingY = 35;
     this.titlePrefixIcon = titlePrefixIcon;
@@ -112,10 +84,12 @@ class Card {
   renderTitle() {
     const titleText = `
       <text
-        x="0"
+        x="${this.width / 2}"
         y="0"
         class="header"
         data-testid="header"
+        dominant-baseline="auto"
+        text-anchor="middle"
       >${this.title}</text>
     `;
 
@@ -172,37 +146,154 @@ class Card {
       : "";
   }
 
-  /**
-   * Retrieves css animations for a card.
-   *
-   * @returns {string} Animation css.
-   */
-  getAnimations = () => {
+  renderParallaxBackground() {
+    const backgrounds = {
+      beach: `
+        <g class="parallax-background">
+          <!-- Sky Layer -->
+          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#87CEEB" class="sky"/>
+          
+          <!-- Cloud Layer -->
+          <g class="clouds">
+            <path d="M20,40 Q30,35 40,40 Q50,35 60,40" stroke="white" stroke-width="15" fill="none" class="cloud"/>
+            <path d="M80,30 Q90,25 100,30 Q110,25 120,30" stroke="white" stroke-width="15" fill="none" class="cloud"/>
+          </g>
+          
+          <!-- Sea Layer -->
+          <path d="M0,${this.height * 0.6} 
+                   Q${this.width * 0.25},${this.height * 0.55} 
+                   ${this.width * 0.5},${this.height * 0.6} 
+                   Q${this.width * 0.75},${this.height * 0.65} 
+                   ${this.width},${this.height * 0.6}" 
+                fill="#0077be" class="sea"/>
+          
+          <!-- Sand Layer -->
+          <path d="M0,${this.height} 
+                   L0,${this.height * 0.7} 
+                   Q${this.width * 0.5},${this.height * 0.65} 
+                   ${this.width},${this.height * 0.7} 
+                   L${this.width},${this.height}" 
+                fill="#f4d03f" class="sand"/>
+        </g>
+      `,
+
+      forest: `
+        <g class="parallax-background">
+          <!-- Sky Layer -->
+          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#a5d6a7" class="sky"/>
+          
+          <!-- Mountain Layer -->
+          <path d="M0,${this.height * 0.6} 
+                   L${this.width * 0.3},${this.height * 0.3} 
+                   L${this.width * 0.6},${this.height * 0.6}" 
+                fill="#4b6455" class="mountain"/>
+          
+          <!-- Trees Layer -->
+          <g class="trees">
+            ${Array.from(
+              { length: 5 },
+              (_, i) => `
+              <g transform="translate(${i * (this.width / 5)}, ${this.height * 0.6})">
+                <polygon points="0,0 20,-30 40,0" fill="#2d5a27" class="tree"/>
+                <rect x="18" y="0" width="4" height="10" fill="#4a2f23" class="trunk"/>
+              </g>
+            `,
+            ).join("")}
+          </g>
+        </g>
+      `,
+
+      city: `
+        <g class="parallax-background">
+          <!-- Sky Layer -->
+          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#1a237e" class="sky"/>
+          
+          <!-- Stars Layer -->
+          ${Array.from(
+            { length: 20 },
+            () => `
+            <circle cx="${Math.random() * this.width}" 
+                    cy="${Math.random() * this.height * 0.5}" 
+                    r="1" 
+                    fill="white" 
+                    class="star"/>
+          `,
+          ).join("")}
+          
+          <!-- Buildings Layer -->
+          <g class="buildings">
+            ${Array.from(
+              { length: 6 },
+              (_, i) => `
+              <rect x="${i * (this.width / 6)}" 
+                    y="${this.height * 0.4}" 
+                    width="${this.width / 8}" 
+                    height="${Math.random() * this.height * 0.4 + this.height * 0.2}" 
+                    fill="#263238" 
+                    class="building"/>
+            `,
+            ).join("")}
+          </g>
+        </g>
+      `,
+    };
+
+    return backgrounds[this.theme] || "";
+  }
+
+  getAnimations() {
     return `
-      /* Animations */
+      /* Base Animations */
       @keyframes scaleInAnimation {
-        from {
-          transform: translate(-5px, 5px) scale(0);
-        }
-        to {
-          transform: translate(-5px, 5px) scale(1);
-        }
+        from { transform: translate(-5px, 5px) scale(0); }
+        to { transform: translate(-5px, 5px) scale(1); }
       }
       @keyframes fadeInAnimation {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      /* Parallax Animations */
+      @keyframes cloudFloat {
+        from { transform: translateX(-10px); }
+        to { transform: translateX(${this.width + 10}px); }
+      }
+      @keyframes wave {
+        0% { transform: translateX(0) translateY(0); }
+        50% { transform: translateX(-5px) translateY(2px); }
+        100% { transform: translateX(0) translateY(0); }
+      }
+      @keyframes starTwinkle {
+        0% { opacity: 1; }
+        50% { opacity: 0.3; }
+        100% { opacity: 1; }
+      }
+      
+      /* Theme-specific styles */
+      .cloud {
+        animation: cloudFloat 20s linear infinite;
+      }
+      .sea {
+        animation: wave 5s ease-in-out infinite;
+      }
+      .star {
+        animation: starTwinkle 2s ease-in-out infinite;
+      }
+      .tree {
+        transition: transform 0.3s ease;
+      }
+      .tree:hover {
+        transform: scale(1.05);
+      }
+      .building {
+        transition: transform 0.3s ease;
+      }
+      .building:hover {
+        transform: translateY(-5px);
       }
     `;
-  };
+  }
 
-  /**
-   * @param {string} body The inner body of the card.
-   * @returns {string} The rendered card.
-   */
   render(body) {
     return `
       <svg
@@ -217,27 +308,13 @@ class Card {
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
         <style>
-          .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: ${this.colors.titleColor};
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
-          }
-          @supports(-moz-appearance: auto) {
-            /* Selector detects Firefox */
-            .header { font-size: 15.5px; }
-          }
           ${this.css}
-
           ${process.env.NODE_ENV === "test" ? "" : this.getAnimations()}
-          ${
-            this.animations === false
-              ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }`
-              : ""
-          }
+          ${this.animations === false ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }` : ""}
         </style>
 
-        ${this.renderGradient()}
-
+        ${this.renderParallaxBackground()}
+        
         <rect
           data-testid="card-bg"
           x="0.5"
@@ -246,11 +323,7 @@ class Card {
           height="99%"
           stroke="${this.colors.borderColor}"
           width="${this.width - 1}"
-          fill="${
-            typeof this.colors.bgColor === "object"
-              ? "url(#gradient)"
-              : this.colors.bgColor
-          }"
+          fill="transparent"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
         />
 
@@ -258,9 +331,7 @@ class Card {
 
         <g
           data-testid="main-card-body"
-          transform="translate(0, ${
-            this.hideTitle ? this.paddingX : this.paddingY + 20
-          })"
+          transform="translate(0, ${this.hideTitle ? this.paddingX : this.paddingY + 20})"
         >
           ${body}
         </g>

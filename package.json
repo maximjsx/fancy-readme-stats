@@ -16,6 +16,7 @@
     "url": "https://github.com/max1mde/fancy-readme-stats.git"
   },
   "scripts": {
+    "start": "node express.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
