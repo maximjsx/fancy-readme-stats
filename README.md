@@ -8,7 +8,7 @@ A strongly minimized fork of https://github.com/anuraghazra/github-readme-stats
 Customizable & animated GitHub profile cards displaying stats, contact info & more.   
 With customizable themes, featuring animated parallax backgrounds like beaches, forests, or cityscapes.
 
-![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&theme=beach&email=you@gmail.com&show_icons=true)
+![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&theme=beach&email=you@gmail.com&show_icons=true&title=Your%20name)
 
 ## Features
 
