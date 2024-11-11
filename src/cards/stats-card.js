@@ -397,7 +397,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   const title = `
   <text
-    class="title"
+    class="title textInAnimation"
     x="${cardWidth / 2}"
     y="25"
     text-anchor="middle"
@@ -412,7 +412,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   const description = `
   <text
-    class="title"
+    class="title textInAnimation"
     x="${cardWidth / 2}"
     y="60"
     text-anchor="middle"
@@ -427,7 +427,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   const contact = `
   <text
-    class="title"
+    class="title fadeInAnimation"
     x="${cardWidth / 2}"
     y="150"
     text-anchor="middle"
