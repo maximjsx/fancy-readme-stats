@@ -103,9 +103,17 @@ class Card {
   }
 
   renderParallaxBackground() {
+    const maskId = `mask-${Math.random().toString(36).substring(7)}`; 
+
     const backgrounds = {
       beach: `
-      <g class="parallax-background">
+        <defs>
+          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+            <rect x="0" y="0" width="${this.width - 3}" height="${this.height - 3}" rx="${this.border_radius}" fill="white"/>
+          </mask>
+        </defs>
+
+        <g class="parallax-background" mask="url(#${maskId})">
         <!-- Sky Layer with Gradient (Static) -->
         <defs>
           <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
@@ -118,7 +126,7 @@ class Card {
         <!-- Stars Layer with Blinking Effect -->
         <g class="stars">
           ${Array.from(
-            { length: 20 },
+            { length: 15 },
             () => `
               <circle cx="${Math.random() * this.width}"
                       cy="${Math.random() * this.height * 0.3}"
@@ -134,10 +142,23 @@ class Card {
             { length: 20 },
             () => `
               <circle cx="${Math.random() * this.width}"
-                      cy="${Math.random() * this.height * 0.3}"
+                      cy="${Math.random() * this.height * 0.2}"
                       r="1"
                       fill="white"
                       class="star2"/>
+            `,
+          ).join("")}
+        </g>
+
+                        <g class="stars">
+          ${Array.from(
+            { length: 10 },
+            () => `
+              <circle cx="${Math.random() * this.width}"
+                      cy="${Math.random() * this.height * 0.4}"
+                      r="1"
+                      fill="white"
+                      class="star3"/>
             `,
           ).join("")}
         </g>
@@ -166,7 +187,7 @@ class Card {
                      ${Array.from({ length: 52 })
                        .map((_, i) => {
                          const x = offset + (this.width / 40) * i;
-                         const y = this.height * 0.6 + Math.sin(x * 0.3) * 10;
+                         const y = this.height * 0.6 + Math.sin(x * 0.3) * 9;
                          return `${i === 0 ? "M" : "L"}${x},${y}`;
                        })
                        .join(" ")} 
@@ -177,6 +198,26 @@ class Card {
             .join("")}
         </g>
 
+               <g class="sea-container">
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.6}
+                     ${Array.from({ length: 52 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 30) * i;
+                         const y = this.height * 0.6 + Math.sin(x * 0.3) * 8;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#001e42" opacity="0.9" class="sea2"/>
+          `,
+            )
+            .join("")}
+            
+        </g>
+
 
         <!-- Sand Layer -->
         <g class="sand-container">
@@ -184,10 +225,10 @@ class Card {
             .map(
               (offset) => `
             <path d="M${offset},${this.height * 0.8}
-                     ${Array.from({ length: 37 }) // Extra points for smooth loop
+                     ${Array.from({ length: 37 })
                        .map((_, i) => {
                          const x = offset + (this.width / 25) * i;
-                         const y = this.height * 0.8 + Math.sin(x * 0.2) * 5;
+                         const y = this.height * 0.8 + Math.sin(x * 0.2) * 3;
                          return `${i === 0 ? "M" : "L"}${x},${y}`;
                        })
                        .join(" ")} 
@@ -292,7 +333,7 @@ class Card {
 
     @keyframes starTwinkle {
       0% { opacity: 1; }
-      50% { opacity: 0.2; }
+      50% { opacity: 0.1; }
       100% { opacity: 1; }
     }
 
@@ -302,25 +343,31 @@ class Card {
     }
 
    @keyframes floatAndMove {
-      0% { transform: translateX(-${this.width + 1}px) translateY(-10px); }
-      50% { transform: translateX(-${this.width / 2 + 1}px) translateY(20px); }
-      100% { transform: translateX(0) translateY(0px); }
+      0% { transform: translateX(-${this.width + 1}px) translateY(50px); }
+      50% { transform: translateX(-${this.width / 2 + 1}px) translateY(0px); }
+      100% { transform: translateX(0) translateY(50px); }
     }
 
     /* Theme-specific styles */
     .cloud {
-      animation: cloud 50s linear infinite;
+      animation: cloud 56s linear infinite;
     }
     .sea {
-      animation: floatAndMove 15s linear infinite;
+      animation: floatAndMove 16s linear infinite;
+    }
+    .sea2 {
+      animation: floatAndMove 10s linear infinite;
     }
     .sand {
-      animation: move 10s linear infinite;
+      animation: move 7s linear infinite;
     }
     .star {
       animation: starTwinkle 1s ease-in-out infinite;
     }
     .star2 {
+      animation: starTwinkle 3s ease-in-out infinite;
+    }
+    .star3 {
       animation: starTwinkle 2s ease-in-out infinite;
     }
     .textInAnimation {
