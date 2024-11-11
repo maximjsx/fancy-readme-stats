@@ -150,12 +150,10 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   const card = new Card({
-    defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
-    titlePrefixIcon: icons.contribs,
+    title: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     width: 400,
     height,
     border_radius,
-    colors,
   });
 
   card.disableAnimations();

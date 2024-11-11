@@ -113,21 +113,13 @@ const renderGistCard = (gistData, options = {}) => {
   const header = show_owner ? nameWithOwner : name;
 
   const card = new Card({
-    defaultTitle:
+    title:
       header.length > HEADER_MAX_LENGTH
         ? `${header.slice(0, HEADER_MAX_LENGTH)}...`
         : header,
-    titlePrefixIcon: icons.gist,
     width: CARD_DEFAULT_WIDTH,
     height,
     border_radius,
-    colors: {
-      titleColor,
-      textColor,
-      iconColor,
-      bgColor,
-      borderColor,
-    },
   });
 
   card.setCSS(`

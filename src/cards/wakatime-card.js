@@ -390,18 +390,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   }
 
   const card = new Card({
-    customTitle: custom_title,
-    defaultTitle: titleText,
+    title: custom_title,
     width: 495,
     height,
     border_radius,
-    colors: {
-      titleColor,
-      textColor,
-      iconColor,
-      bgColor,
-      borderColor,
-    },
   });
 
   if (disable_animations) {

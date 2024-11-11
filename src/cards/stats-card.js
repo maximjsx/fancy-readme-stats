@@ -146,17 +146,12 @@ const renderStatsCard = (stats, options = {}) => {
     totalIssues,
     totalPRs,
     totalPRsMerged,
-    mergedPRsPercentage,
-    totalReviews,
-    totalDiscussionsStarted,
-    totalDiscussionsAnswered,
     contributedTo,
     rank,
   } = stats;
   const {
     hide = [],
     show_icons = false,
-    hide_title = false,
     hide_border = false,
     card_width,
     hide_rank = false,
@@ -223,59 +218,14 @@ const renderStatsCard = (stats, options = {}) => {
       value: contributedTo,
       id: "contribs",
     },
-    rank: {
-      icon: icons.rank,
-      label: "Rank",
-      value: rank,
-      id: "rank",
-    },
   };
 
-  if (show.includes("prs_merged")) {
-    STATS.prs_merged = {
-      icon: icons.prs_merged,
-      label: "PRs Merged",
-      value: totalPRsMerged,
-      id: "prs_merged",
-    };
-  }
-
-  if (show.includes("prs_merged_percentage")) {
-    STATS.prs_merged_percentage = {
-      icon: icons.prs_merged_percentage,
-      label: "PRs Merged Percentage",
-      value: mergedPRsPercentage.toFixed(2),
-      id: "prs_merged_percentage",
-      unitSymbol: "%",
-    };
-  }
-
-  if (show.includes("reviews")) {
-    STATS.reviews = {
-      icon: icons.reviews,
-      label: "Reviews",
-      value: totalReviews,
-      id: "reviews",
-    };
-  }
-
-  if (show.includes("discussions_started")) {
-    STATS.discussions_started = {
-      icon: icons.discussions_started,
-      label: "Discussions Started",
-      value: totalDiscussionsStarted,
-      id: "discussions_started",
-    };
-  }
-
-  if (show.includes("discussions_answered")) {
-    STATS.discussions_answered = {
-      icon: icons.discussions_answered,
-      label: "Discussions Answered",
-      value: totalDiscussionsAnswered,
-      id: "discussions_answered",
-    };
-  }
+  STATS.prs_merged = {
+    icon: icons.prs_merged,
+    label: "PRs Merged",
+    value: totalPRsMerged,
+    id: "prs_merged",
+  };
 
   const statItemsLeft = Object.keys(STATS)
     .filter(
@@ -283,7 +233,7 @@ const renderStatsCard = (stats, options = {}) => {
         !hide.includes(key) &&
         key !== "issues" &&
         key !== "contribs" &&
-        key !== "rank",
+        key !== "prs_merged",
     )
     .map((key, index) =>
       createTextNode({
@@ -294,7 +244,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
-        shiftValuePos: 79.01,
+        shiftValuePos: 50,
         bold: text_bold,
         number_format,
       }),
@@ -304,7 +254,7 @@ const renderStatsCard = (stats, options = {}) => {
     .filter(
       (key) =>
         !hide.includes(key) &&
-        (key === "issues" || key === "contribs" || key === "rank"),
+        (key === "issues" || key === "contribs" || key === "prs_merged"),
     )
     .map((key, index) =>
       createTextNode({
@@ -315,7 +265,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
-        shiftValuePos: 79.01,
+        shiftValuePos: 50,
         bold: text_bold,
         number_format,
       }),
@@ -444,17 +394,49 @@ const renderStatsCard = (stats, options = {}) => {
     .join(", ");
 
   const title = `
-    <text
-      class="title"
-      x="${cardWidth / 2}"
-      y="10"
-      text-anchor="middle"
-      font="600 55px 'Segoe UI', Ubuntu, Sans-Serif"
-      fill="white"
-    >
-      ${custom_title ? custom_title : "Stats"}
-    </text>
-  `;
+  <text
+    class="title"
+    x="${cardWidth / 2}"
+    y="25"
+    text-anchor="middle"
+    font-weight="600"
+    font-size="40px"
+    font-family="'Segoe UI', Ubuntu, Sans-Serif"
+    fill="white"
+  >
+    ${custom_title ? custom_title : name}
+  </text>
+`;
+
+  const description = `
+  <text
+    class="title"
+    x="${cardWidth / 2}"
+    y="60"
+    text-anchor="middle"
+    font-weight="600"
+    font-size="15px"
+    font-family="'Segoe UI', Ubuntu, Sans-Serif"
+    fill="white"
+  >
+    ${"A very long description about me"}
+  </text>
+`;
+
+  const contact = `
+  <text
+    class="title"
+    x="${cardWidth / 2}"
+    y="150"
+    text-anchor="middle"
+    font-weight="600"
+    font-size="13px"
+    font-family="'Segoe UI', Ubuntu, Sans-Serif"
+    fill="white"
+  >
+    ${"example@email.com"}
+  </text>
+`;
 
   card.setAccessibilityLabel({
     title: `${card.title}, Rank: ${rank.level}`,
@@ -462,15 +444,16 @@ const renderStatsCard = (stats, options = {}) => {
   });
 
   return card.render(`
-    ${rankCircle}
     ${title}
+    ${description}
+    ${contact}
     <svg x="0" y="0">
       ${flexLayout({
         items: statItemsLeft,
         gap: lheight,
         direction: "column",
       }).join("")}
-      <g transform="translate(${leftWidth + 32}, 0)">
+      <g transform="translate(${leftWidth - 5}, 0)">
         ${flexLayout({
           items: statItemsRight,
           gap: lheight,
