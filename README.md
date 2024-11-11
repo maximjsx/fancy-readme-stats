@@ -39,5 +39,3 @@ Contributions are welcome!
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-![asd](http://localhost:9000/?username=max1mde&theme=beach&email=peter@gmail.com&name=Jone-Peterson)
