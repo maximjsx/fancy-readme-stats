@@ -14,7 +14,7 @@ With customizable themes, featuring animated parallax backgrounds like beaches, 
 To use this card in your GitHub profile README, add the following Markdown snippet to your README file:
 
 ```markdown
-![GitHub Profile Card](https://fancy-readme-stats.vercel.app/api?card=1&username=YOUR_USERNAME&theme=THEME_NAME&email=YOUR_EMAIL)
+![GitHub Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&email=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)
 ```
 
 ### Themes:
