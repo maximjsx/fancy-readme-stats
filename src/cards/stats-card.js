@@ -10,10 +10,12 @@ import {
   measureText,
 } from "../common/utils.js";
 
-const CARD_MIN_WIDTH = 287;
-const CARD_DEFAULT_WIDTH = 287;
-const RANK_CARD_MIN_WIDTH = 420;
-const RANK_CARD_DEFAULT_WIDTH = 450;
+const CARD_LEFT_MIN_WIDTH = 250;
+const CARD_DEFAULT_WIDTH = 250;
+const RANK_CARD_LEFT_MIN_WIDTH = 756;
+const RANK_CARD_DEFAULT_WIDTH = 810;
+const CARD_RIGHT_MIN_WIDTH = 250;
+const CARD_RIGHT_DEFAULT_WIDTH = 250;
 const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
 
@@ -209,6 +211,24 @@ const renderStatsCard = (stats, options = {}) => {
       value: totalPRs,
       id: "prs",
     },
+    issues: {
+      icon: icons.issues,
+      label: "Issues",
+      value: totalIssues,
+      id: "issues",
+    },
+    contribs: {
+      icon: icons.contribs,
+      label: "Contributed to",
+      value: contributedTo,
+      id: "contribs",
+    },
+    rank: {
+      icon: icons.rank,
+      label: "Rank",
+      value: rank,
+      id: "rank",
+    },
   };
 
   if (show.includes("prs_merged")) {
@@ -239,13 +259,6 @@ const renderStatsCard = (stats, options = {}) => {
     };
   }
 
-  STATS.issues = {
-    icon: icons.issues,
-    label: "Issues",
-    value: totalIssues,
-    id: "issues",
-  };
-
   if (show.includes("discussions_started")) {
     STATS.discussions_started = {
       icon: icons.discussions_started,
@@ -264,15 +277,14 @@ const renderStatsCard = (stats, options = {}) => {
     };
   }
 
-  STATS.contribs = {
-    icon: icons.contribs,
-    label: "Contributed to",
-    value: contributedTo,
-    id: "contribs",
-  };
-
-  const statItems = Object.keys(STATS)
-    .filter((key) => !hide.includes(key))
+  const statItemsLeft = Object.keys(STATS)
+    .filter(
+      (key) =>
+        !hide.includes(key) &&
+        key !== "issues" &&
+        key !== "contribs" &&
+        key !== "rank",
+    )
     .map((key, index) =>
       createTextNode({
         icon: STATS[key].icon,
@@ -288,7 +300,28 @@ const renderStatsCard = (stats, options = {}) => {
       }),
     );
 
-  if (statItems.length === 0 && hide_rank) {
+  const statItemsRight = Object.keys(STATS)
+    .filter(
+      (key) =>
+        !hide.includes(key) &&
+        (key === "issues" || key === "contribs" || key === "rank"),
+    )
+    .map((key, index) =>
+      createTextNode({
+        icon: STATS[key].icon,
+        label: STATS[key].label,
+        value: STATS[key].value,
+        id: STATS[key].id,
+        unitSymbol: STATS[key].unitSymbol,
+        index,
+        showIcons: show_icons,
+        shiftValuePos: 79.01,
+        bold: text_bold,
+        number_format,
+      }),
+    );
+
+  if (statItemsLeft.length === 0 && statItemsRight.length === 0 && hide_rank) {
     throw new CustomError(
       "Could not render stats card.",
       "Either stats or rank are required.",
@@ -296,8 +329,8 @@ const renderStatsCard = (stats, options = {}) => {
   }
 
   let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : statItems.length ? 150 : 180,
+    45 + (statItemsLeft.length + statItemsRight.length + 1) * lheight,
+    hide_rank ? 0 : statItemsLeft.length || statItemsRight.length ? 150 : 180,
   );
 
   const progress = 100 - rank.percentile;
@@ -314,71 +347,74 @@ const renderStatsCard = (stats, options = {}) => {
     return measureText(custom_title ? custom_title : "Stats");
   };
 
-  const iconWidth = show_icons && statItems.length ? 16 + 1 : 0;
-  const minCardWidth =
+  const iconWidth =
+    show_icons && (statItemsLeft.length || statItemsRight.length) ? 16 + 1 : 0;
+  const minLeftCardWidth =
     (hide_rank
-      ? clampValue(50 + calculateTextWidth() * 2, CARD_MIN_WIDTH, Infinity)
-      : statItems.length
-        ? RANK_CARD_MIN_WIDTH
+      ? clampValue(50 + calculateTextWidth() * 2, CARD_LEFT_MIN_WIDTH, Infinity)
+      : statItemsLeft.length
+        ? RANK_CARD_LEFT_MIN_WIDTH
         : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
-  const defaultCardWidth =
+  const defaultLeftCardWidth =
     (hide_rank
       ? CARD_DEFAULT_WIDTH
-      : statItems.length
+      : statItemsLeft.length
         ? RANK_CARD_DEFAULT_WIDTH
         : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
-  let width = card_width
+  const minRightCardWidth =
+    (hide_rank
+      ? clampValue(
+          50 + calculateTextWidth() * 2,
+          CARD_RIGHT_MIN_WIDTH,
+          Infinity,
+        )
+      : statItemsRight.length
+        ? CARD_RIGHT_MIN_WIDTH
+        : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+  const defaultRightCardWidth =
+    (hide_rank
+      ? CARD_RIGHT_DEFAULT_WIDTH
+      : statItemsRight.length
+        ? CARD_RIGHT_DEFAULT_WIDTH
+        : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+  let leftWidth = card_width
     ? isNaN(card_width)
-      ? defaultCardWidth
+      ? defaultLeftCardWidth
       : card_width
-    : defaultCardWidth;
-  if (width < minCardWidth) {
-    width = minCardWidth;
+    : defaultLeftCardWidth;
+  let rightWidth = card_width
+    ? isNaN(card_width)
+      ? defaultRightCardWidth
+      : card_width
+    : defaultRightCardWidth;
+  if (leftWidth < minLeftCardWidth) {
+    leftWidth = minLeftCardWidth;
+  }
+  if (rightWidth < minRightCardWidth) {
+    rightWidth = minRightCardWidth;
   }
 
+  const cardWidth = leftWidth + rightWidth;
   const card = new Card({
-    title: custom_title ? custom_title : "Stats",
-    width,
+    title: custom_title,
+    width: cardWidth,
     height,
     border_radius,
     theme: "beach",
-    colors: {
-      titleColor,
-      textColor,
-      iconColor,
-      bgColor,
-      borderColor,
-    },
   });
 
   card.setHideBorder(hide_border);
-  card.setHideTitle(hide_title);
+  card.setHideTitle(true);
   card.setCSS(cssStyles);
 
   if (disable_animations) {
     card.disableAnimations();
   }
 
-  const calculateRankXTranslation = () => {
-    if (statItems.length) {
-      const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
-      if (width > RANK_CARD_DEFAULT_WIDTH) {
-        const xMaxExpansion = minXTranslation + (450 - minCardWidth) / 2;
-        return xMaxExpansion + width - RANK_CARD_DEFAULT_WIDTH;
-      } else {
-        return minXTranslation + (width - minCardWidth) / 2;
-      }
-    } else {
-      return width / 2 + 20 - 10;
-    }
-  };
-
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle"
-          transform="translate(${calculateRankXTranslation()}, ${
-            height / 2 - 50
-          })">
+          transform="translate(${cardWidth / 2}, ${height / 2 - 50})">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
@@ -386,8 +422,10 @@ const renderStatsCard = (stats, options = {}) => {
         </g>
       </g>`;
 
-  const labels = Object.keys(STATS)
-    .filter((key) => !hide.includes(key))
+  const labelsLeft = Object.keys(STATS)
+    .filter(
+      (key) => !hide.includes(key) && key !== "issues" && key !== "contribs",
+    )
     .map((key) => {
       if (key === "commits") {
         return `${STATS[key].label} ${STATS[key].value}`;
@@ -396,19 +434,49 @@ const renderStatsCard = (stats, options = {}) => {
     })
     .join(", ");
 
+  const labelsRight = Object.keys(STATS)
+    .filter(
+      (key) => !hide.includes(key) && (key === "issues" || key === "contribs"),
+    )
+    .map((key) => {
+      return `${STATS[key].label}: ${STATS[key].value}`;
+    })
+    .join(", ");
+
+  const title = `
+    <text
+      class="title"
+      x="${cardWidth / 2}"
+      y="10"
+      text-anchor="middle"
+      font="600 55px 'Segoe UI', Ubuntu, Sans-Serif"
+      fill="white"
+    >
+      ${custom_title ? custom_title : "Stats"}
+    </text>
+  `;
+
   card.setAccessibilityLabel({
     title: `${card.title}, Rank: ${rank.level}`,
-    desc: labels,
+    desc: `${labelsLeft}, ${labelsRight}`,
   });
 
   return card.render(`
     ${rankCircle}
+    ${title}
     <svg x="0" y="0">
       ${flexLayout({
-        items: statItems,
+        items: statItemsLeft,
         gap: lheight,
         direction: "column",
       }).join("")}
+      <g transform="translate(${leftWidth + 32}, 0)">
+        ${flexLayout({
+          items: statItemsRight,
+          gap: lheight,
+          direction: "column",
+        }).join("")}
+      </g>
     </svg>
   `);
 };

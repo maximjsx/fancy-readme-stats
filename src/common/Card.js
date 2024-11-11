@@ -1,4 +1,4 @@
-import { encodeHTML, flexLayout } from "./utils.js";
+import { flexLayout } from "./utils.js";
 
 class Card {
   constructor({
@@ -6,20 +6,16 @@ class Card {
     height = 100,
     border_radius = 4.5,
     theme = "beach",
-    colors = {},
     title = "Stats",
-    titlePrefixIcon = null,
   }) {
     this.width = width;
     this.height = height;
     this.theme = theme;
     this.border_radius = border_radius;
-    this.colors = colors;
     this.title = title;
     this.css = "";
     this.paddingX = 25;
     this.paddingY = 35;
-    this.titlePrefixIcon = titlePrefixIcon;
     this.animations = true;
     this.a11yTitle = "";
     this.a11yDesc = "";
@@ -93,57 +89,17 @@ class Card {
       >${this.title}</text>
     `;
 
-    const prefixIcon = `
-      <svg
-        class="icon"
-        x="0"
-        y="-13"
-        viewBox="0 0 16 16"
-        version="1.1"
-        width="16"
-        height="16"
-      >
-        ${this.titlePrefixIcon}
-      </svg>
-    `;
     return `
       <g
         data-testid="card-title"
         transform="translate(${this.paddingX}, ${this.paddingY})"
       >
         ${flexLayout({
-          items: [this.titlePrefixIcon && prefixIcon, titleText],
+          items: [titleText],
           gap: 25,
         }).join("")}
       </g>
     `;
-  }
-
-  /**
-   * @returns {string} The rendered card gradient.
-   */
-  renderGradient() {
-    if (typeof this.colors.bgColor !== "object") {
-      return "";
-    }
-
-    const gradients = this.colors.bgColor.slice(1);
-    return typeof this.colors.bgColor === "object"
-      ? `
-        <defs>
-          <linearGradient
-            id="gradient"
-            gradientTransform="rotate(${this.colors.bgColor[0]})"
-            gradientUnits="userSpaceOnUse"
-          >
-            ${gradients.map((grad, index) => {
-              let offset = (index * 100) / (gradients.length - 1);
-              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
-            })}
-          </linearGradient>
-        </defs>
-        `
-      : "";
   }
 
   renderParallaxBackground() {
@@ -308,6 +264,17 @@ class Card {
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
         <style>
+
+          .header {
+            font: 600 25px 'Segoe UI', Ubuntu, Sans-Serif;
+            fill: white;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
+
           ${this.css}
           ${process.env.NODE_ENV === "test" ? "" : this.getAnimations()}
           ${this.animations === false ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }` : ""}
@@ -321,7 +288,7 @@ class Card {
           y="0.5"
           rx="${this.border_radius}"
           height="99%"
-          stroke="${this.colors.borderColor}"
+          stroke="white"
           width="${this.width - 1}"
           fill="transparent"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
