@@ -109,7 +109,7 @@ class Card {
       beach: `
         <defs>
           <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-            <rect x="0" y="0" width="${this.width - 3}" height="${this.height - 3}" rx="${this.border_radius}" fill="white"/>
+            <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
           </mask>
         </defs>
 
