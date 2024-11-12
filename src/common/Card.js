@@ -109,45 +109,41 @@ class Card {
       const stars = Array.from(
         { length: 20 },
         () => `
-        <circle 
-          cx="${Math.random() * this.width}"
-          cy="${Math.random() * this.height * 0.3}"
-          r="1"
-          fill="white"
-          class="star-group-${i + 1}"
-        />
-      `,
+      <circle 
+        cx="${Math.random() * this.width}"
+        cy="${Math.random() * this.height * 0.3}"
+        r="1"
+        fill="white"
+        class="star-group-${i + 1}"
+      />
+    `,
       ).join("");
 
       return `
-        <g class="star-container-${i + 1}">
+      <g class="star-container-${i + 1}">
+        ${stars}
+        <g class="star-container-${i + 1}-duplicate" transform="translate(${this.width}, 0)">
           ${stars}
-          <g class="star-container-${i + 1}-duplicate" transform="translate(${this.width}, 0)">
-            ${stars}
-          </g>
         </g>
-      `;
+      </g>
+    `;
     }).join("");
 
     const backgrounds = {
       beach: `
-        <defs>
-          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-            <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
-          </mask>
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        </mask>
+      </defs>
 
-        </defs>
-
-        <g class="parallax-background" mask="url(#${maskId})">
-
-
+      <g class="parallax-background" mask="url(#${maskId})">
         <!-- Sky Layer with Gradient -->
         <defs>
           <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#3a007b"/>
             <stop offset="100%" stop-color="#d46a00"/>
           </linearGradient>
-
         </defs>
         <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#skyGradient)" class="sky"/>
 
@@ -164,8 +160,7 @@ class Card {
             `,
           ).join("")}
         </g>
-
-                <g class="stars">
+        <g class="stars">
           ${Array.from(
             { length: 20 },
             () => `
@@ -177,8 +172,7 @@ class Card {
             `,
           ).join("")}
         </g>
-
-                        <g class="stars">
+        <g class="stars">
           ${Array.from(
             { length: 10 },
             () => `
@@ -192,106 +186,134 @@ class Card {
         </g>
 
         <!-- Cloud Layers -->
-  <path d="M30,40 Q40,30 55,35 Q70,20 90,35 Q110,30 120,40 Q130,35 140,40 Q150,30 160,40"
-        stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
-  <path  d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
-        stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
-  <path d="M310,25 Q325,10 340,20 Q355,10 370,20 Q385,5 400,20 Q415,10 430,25"
-        stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
-  <path d="M80,80 Q95,65 115,70 Q135,60 155,70 Q175,65 185,80 Q195,70 205,80"
-        stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
+        ${this.renderCloudLayers()}
 
-  <path d="M470,40 Q480,30 495,35 Q510,20 530,35 Q550,30 560,40"
-        stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
-  <path d="M490,80 Q500,65 520,70 Q540,60 560,70 Q580,65 590,80"
-        stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
-
-<!-- Wave Layer -->
-       <g class="sea-container">
-          ${[0, this.width]
-            .map(
-              (offset) => `
-            <path d="M${offset},${this.height * 0.6}
-                     ${Array.from({ length: 52 })
-                       .map((_, i) => {
-                         const x = offset + (this.width / 40) * i;
-                         const y = this.height * 0.6 + Math.sin(x * 0.3) * 9;
-                         return `${i === 0 ? "M" : "L"}${x},${y}`;
-                       })
-                       .join(" ")} 
-                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#002d62" opacity="0.9" class="sea"/>
-          `,
-            )
-            .join("")}
+        <!-- Wave Layer -->
+        <g class="sea-container">
+          ${this.renderSeaLayer()}
         </g>
-
-               <g class="sea-container">
-          ${[0, this.width]
-            .map(
-              (offset) => `
-            <path d="M${offset},${this.height * 0.6}
-                     ${Array.from({ length: 52 })
-                       .map((_, i) => {
-                         const x = offset + (this.width / 30) * i;
-                         const y = this.height * 0.6 + Math.sin(x * 0.3) * 8;
-                         return `${i === 0 ? "M" : "L"}${x},${y}`;
-                       })
-                       .join(" ")} 
-                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#001e42" opacity="0.9" class="sea2"/>
-          `,
-            )
-            .join("")}
-            
+        <g class="sea-container">
+          ${this.renderSeaLayer(true)}
         </g>
-
 
         <!-- Sand Layer -->
         <g class="sand-container">
-          ${[0, this.width]
-            .map(
-              (offset) => `
-            <path d="M${offset},${this.height * 0.8}
-                     ${Array.from({ length: 37 })
-                       .map((_, i) => {
-                         const x = offset + (this.width / 25) * i;
-                         const y = this.height * 0.8 + Math.sin(x * 0.2) * 3;
-                         return `${i === 0 ? "M" : "L"}${x},${y}`;
-                       })
-                       .join(" ")} 
-                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#b68a00" class="sand"/>
-          `,
-            )
-            .join("")}
+          ${this.renderSandLayer()}
         </g>
-                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
-        
-              </g>
-      `,
+
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+    `,
 
       forest: `
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        </mask>
+        <linearGradient id="forestGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4CAF50"/>
+          <stop offset="100%" stop-color="#1E88E5"/>
+        </linearGradient>
+      </defs>
 
+      <g class="parallax-background" mask="url(#${maskId})">
+        <!-- Sky Layer with Gradient -->
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
+        ${starGroups}
 
+        ${this.renderScene()}
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+    `,
 
-        <defs>
-          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-            <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
-          </mask>
-          <linearGradient id="forestGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4CAF50"/>
-            <stop offset="100%" stop-color="#1E88E5"/>
-          </linearGradient>
-        </defs>
+      city: `
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        </mask>
+        <linearGradient id="cityGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0010A8"/>
+          <stop offset="100%" stop-color="#050036"/>
+        </linearGradient>
+      </defs>
 
-        <g class="parallax-background" mask="url(#${maskId})">
-          <!-- Sky Layer with Gradient -->
-          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
-          
+      <g class="parallax-background" mask="url(#${maskId})">
+        <!-- Sky Layer with Gradient -->
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#cityGradient)" class="sky"/>
+        ${starGroups}
+        ${this.renderBuildingLayers()}
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+    `,
+    };
 
-          ${starGroups}
+    return backgrounds[this.theme] || "";
+  }
 
+  renderCloudLayers() {
+    return `
+    <path d="M30,40 Q40,30 55,35 Q70,20 90,35 Q110,30 120,40 Q130,35 140,40 Q150,30 160,40"
+          stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
+    <path  d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
+          stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
+    <path d="M310,25 Q325,10 340,20 Q355,10 370,20 Q385,5 400,20 Q415,10 430,25"
+          stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
+    <path d="M80,80 Q95,65 115,70 Q135,60 155,70 Q175,65 185,80 Q195,70 205,80"
+          stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
+    <path d="M470,40 Q480,30 495,35 Q510,20 530,35 Q550,30 560,40"
+          stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
+    <path d="M490,80 Q500,65 520,70 Q540,60 560,70 Q580,65 590,80"
+          stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
+  `;
+  }
+
+  renderSeaLayer(isSecondLayer = false) {
+    return `
+    ${[0, this.width]
+      .map(
+        (offset) => `
+          <path d="M${offset},${this.height * 0.6}
+                   ${Array.from({ length: 52 })
+                     .map((_, i) => {
+                       const x =
+                         offset + (this.width / (isSecondLayer ? 30 : 40)) * i;
+                       const y =
+                         this.height * 0.6 +
+                         Math.sin(x * 0.3) * (isSecondLayer ? 8 : 9);
+                       return `${i === 0 ? "M" : "L"}${x},${y}`;
+                     })
+                     .join(" ")} 
+                   L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                fill="${isSecondLayer ? "#001e42" : "#002d62"}" opacity="0.9" class="${isSecondLayer ? "sea2" : "sea"}"/>
+        `,
+      )
+      .join("")}
+  `;
+  }
+
+  renderSandLayer() {
+    return `
+    ${[0, this.width]
+      .map(
+        (offset) => `
+          <path d="M${offset},${this.height * 0.8}
+                   ${Array.from({ length: 37 })
+                     .map((_, i) => {
+                       const x = offset + (this.width / 25) * i;
+                       const y = this.height * 0.8 + Math.sin(x * 0.2) * 3;
+                       return `${i === 0 ? "M" : "L"}${x},${y}`;
+                     })
+                     .join(" ")} 
+                   L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                fill="#b68a00" class="sand"/>
+        `,
+      )
+      .join("")}
+  `;
+  }
+
+  renderScene() {
+    return `
         <g class="dirt-container">
           ${[0, this.width]
             .map(
@@ -399,70 +421,49 @@ class Card {
             `,
             ).join("")}
           </g>
+  `;
+  }
 
+  renderBuildingLayers() {
+    return [1, 2, 3, 4, 5, 6]
+      .map(
+        (layer) => `
+        <g class="buildings layer-${-layer + 6}">
+          ${this.renderBuildings(layer)}
         </g>
       `,
+      )
+      .join("");
+  }
 
-      city: `
-        <defs>
-          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-            <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
-          </mask>
-          <linearGradient id="cityGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0010A8"/>
-            <stop offset="100%" stop-color="#050036"/>
-          </linearGradient>
-        </defs>
+  renderBuildings(layer) {
+    return Array.from({ length: 12 }, (_, i) => {
+      const rectHeight =
+        this.height * 0.3 + this.height * (0.2 + (-layer + 6) / 15);
 
-        <g class="parallax-background" mask="url(#${maskId})">
-          <!-- Sky Layer with Gradient -->
-          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#cityGradient)" class="sky"/>
-
-          ${starGroups}
-
-          <!-- Buildings-->
-];
-${[1, 2, 3, 4, 5, 6]
-  .map(
-    (layer) => `
-      <g class="buildings layer-${-layer + 6}">
-        ${Array.from({ length: 12 }, (_, i) => {
-          const rectHeight =
-            this.height * 0.3 + this.height * (0.2 + (-layer + 6) / 15);
-
-          const colors = [
-            "#0F154A",
-            "#1F2660",
-            "#303776",
-            "#3F468A",
-            "#4E558F",
-            "#5F6599",
-            "#717599",
-            "#8C8FA8",
-            "#CFD8DC",
-            "#989AAB",
-          ];
-          const colorIndex = layer + 1;
-          return `
-              <rect x="${i * (this.width / 6)}"
-                    y="${this.height * 1.37 - rectHeight}" 
-                    width="${(this.width / ((-layer + 6) * 5)) * 2}"
-                    height="${rectHeight}"
-                    opacity="${0.8 + layer / 10}"
-                    fill="${colors[colorIndex]}"
-                    class="building"/>
-            `;
-        }).join("")}
-      </g>
-    `,
-  )
-  .join("")}
-
-        </g>
-      `,
-    };
-
-    return backgrounds[this.theme] || "";
+      const colors = [
+        "#0F154A",
+        "#1F2660",
+        "#303776",
+        "#3F468A",
+        "#4E558F",
+        "#5F6599",
+        "#717599",
+        "#8C8FA8",
+        "#CFD8DC",
+        "#989AAB",
+      ];
+      const colorIndex = layer + 1;
+      return `
+        <rect x="${i * (this.width / 6)}"
+              y="${this.height * 1.37 - rectHeight}" 
+              width="${(this.width / ((-layer + 6) * 5)) * 2}"
+              height="${rectHeight}"
+              opacity="${0.8 + layer / 10}"
+              fill="${colors[colorIndex]}"
+              class="building"/>
+      `;
+    }).join("");
   }
 
   getAnimations() {
