@@ -102,6 +102,7 @@ const renderRepoCard = (repo, options = {}) => {
     .join("");
 
   const height =
+    50 +
     (descriptionLinesCount > 1 ? 120 : 110) +
     descriptionLinesCount * lineHeight;
 
@@ -151,7 +152,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const card = new Card({
     title: header.length > 35 ? `${header.slice(0, 35)}...` : header,
-    width: 400,
+    width: 500,
     height,
     border_radius,
     theme: theme,
