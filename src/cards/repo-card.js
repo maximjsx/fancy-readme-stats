@@ -149,7 +149,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const card = new Card({
     title: header.length > 35 ? `${header.slice(0, 35)}...` : header,
-    width: 500,
+    width: 400,
     height,
     border_radius,
     theme: theme,
