@@ -28,7 +28,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 | Parameter       | Type      | Description                                                        |
 |-----------------|-----------|--------------------------------------------------------------------|
 | `dark_bg`       | `number`  | Sets the background darkness level (e.g., `0` for light, `10` for pitch black). |
-| `border_radius` | `number`  | Adjusts the border's corner roundness (e.g., `5` for slight rounding, `15` for more rounded corners). |
+| `border_radius` | `number`  | Adjust the border's corner roundness! Use `5` for slight rounding and `15` for a more rounded effect. |
 | `hide_border`   | `boolean` | Determines whether to hide the border (`true` to hide, `false` to show). |
 
 ### Themes:
