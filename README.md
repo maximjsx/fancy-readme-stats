@@ -6,7 +6,7 @@ Leave a **star** ⭐ if you want me to make more themes<img src="https://github.
 To use this card in your GitHub profile README, add the following Markdown snippet to your README file:
 
 ```markdown
-[![GitHub Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&email=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
+[![Fancy Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&email=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
 ```
 
 ### Special characters
