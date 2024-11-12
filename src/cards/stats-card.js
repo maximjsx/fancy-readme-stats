@@ -443,7 +443,7 @@ const renderStatsCard = (stats, options = {}) => {
 `;
 
   card.setAccessibilityLabel({
-    title: `${card.title}, Rank: ${rank.level}`,
+    title: `${name}'s Stats`,
     desc: `${labelsLeft}, ${labelsRight}`,
   });
 
