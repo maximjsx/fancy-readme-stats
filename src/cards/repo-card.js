@@ -154,9 +154,9 @@ const renderRepoCard = (repo, options = {}) => {
     width: 400,
     height,
     border_radius,
+    theme: theme,
   });
 
-  card.disableAnimations();
   card.setHideBorder(hide_border);
   card.setHideTitle(false);
   card.setCSS(`

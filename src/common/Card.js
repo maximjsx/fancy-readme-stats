@@ -80,12 +80,10 @@ class Card {
   renderTitle() {
     const titleText = `
       <text
-        x="${this.width / 2}"
+        x="0"
         y="0"
         class="header"
         data-testid="header"
-        dominant-baseline="auto"
-        text-anchor="middle"
       >${this.title}</text>
     `;
 
