@@ -397,7 +397,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   const title = `
   <text
-    class="title textInAnimation"
+    class="title textInAnimation hvAnim"
     x="${cardWidth / 2}"
     y="25"
     text-anchor="middle"

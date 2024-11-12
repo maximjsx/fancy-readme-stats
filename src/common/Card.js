@@ -457,6 +457,13 @@ ${[1, 2, 3, 4, 5, 6]
     .textInAnimation {
       animation: textInAnimation 2s ease-out forwards;
     }
+    .hvAnim {
+      fill: white;
+      transition: fill 0.4s ease-in-out;
+    }  
+    .hvAnim:hover {
+      fill: #8653F8;
+    }  
     .fadeInAnimation {
       animation: fadeInAnimation 4s ease-out forwards;
     }
