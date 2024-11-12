@@ -9,6 +9,28 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 [![GitHub Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&email=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
 ```
 
+### Special characters
+
+| Character | URL Encoded      |
+|-----------|----------------------------|
+| Space     | `%20`                      |
+| #         | `%23`                      |
+| $         | `%24`                      |
+| %         | `%25`                      |
+| &         | `%26`                      |
+| '         | `%27`                      |
+| +         | `%2B`                      |
+| <         | `%3C`                      |
+| =         | `%3D`                      |
+
+### Parameters
+
+| Parameter       | Type      | Description                                                        |
+|-----------------|-----------|--------------------------------------------------------------------|
+| `dark_bg`       | `number`  | Sets the background darkness level (e.g., `0` for light, `10` for pitch black). |
+| `border_radius` | `number`  | Adjusts the border's corner roundness (e.g., `5` for slight rounding, `15` for more rounded corners). |
+| `hide_border`   | `boolean` | Determines whether to hide the border (`true` to hide, `false` to show). |
+
 ### Themes:
 [![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/max1mde/fancy-readme-stats)
 [![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=1)](https://github.com/max1mde/fancy-readme-stats)
