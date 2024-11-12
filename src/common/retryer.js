@@ -4,7 +4,7 @@ import { CustomError, logger } from "./utils.js";
 
 // Count the number of GitHub API tokens available.
 const PATs = Object.keys(process.env).filter((key) =>
-  /PAT_\d*$/.exec(key),
+  /GYAT_\d*$/.exec(key),
 ).length;
 const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
 
@@ -35,7 +35,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
       variables,
-      process.env[`PAT_${retries + 1}`],
+      process.env[`GYAT_${retries + 1}`],
       retries,
     );
 

@@ -223,7 +223,7 @@ const fetchStats = async (
   username,
   include_all_commits = false,
   exclude_repo = [],
-  include_merged_pull_requests = false,
+  include_merged_pull_requests = true,
   include_discussions = false,
   include_discussions_answers = false,
 ) => {
