@@ -7,7 +7,7 @@ With customizable themes, featuring animated parallax backgrounds like beaches, 
 
 [![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&theme=beach&email=your@email123.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
 
-### Leave a **star** if you want me to make more themes<br>
+Leave a **star** ⭐ if you want me to make more themes<br>
 <img src="https://github.com/user-attachments/assets/cc1d39b1-c502-4617-b4af-57bc46355736" width="350">
 
 ## Getting Started
