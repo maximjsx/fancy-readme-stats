@@ -419,7 +419,7 @@ class Card {
 ${[1, 2, 3, 4, 5, 6]
   .map(
     (layer) => `
-      <g class="buildings layer-${layer}">
+      <g class="buildings layer-${-layer + 6}">
         ${Array.from({ length: 12 }, (_, i) => {
           const rectHeight =
             this.height * 0.3 + this.height * (0.2 + (-layer + 6) / 15);
@@ -562,6 +562,12 @@ ${[1, 2, 3, 4, 5, 6]
     }
     .layer-4 {
       animation: move 20s linear infinite;
+    }
+    .layer-5 {
+      animation: move 23s linear infinite;
+    }
+    .layer-6 {
+      animation: move 25s linear infinite;
     }
   `;
   }
