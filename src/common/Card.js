@@ -267,6 +267,8 @@ class Card {
 
       forest: `
 
+
+
         <defs>
           <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
             <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
@@ -281,35 +283,117 @@ class Card {
           <!-- Sky Layer with Gradient -->
           <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
           
-          <!-- Hill Layers -->
-          ${[0.7, 0.75, 0.8]
+
+          ${starGroups}
+
+        <g class="dirt-container">
+          ${[0, this.width]
             .map(
-              (scale, i) => `
-            <path d="M0,${this.height * scale} 
-                     L${this.width * 0.4},${this.height * (scale - 0.15)} 
-                     L${this.width * 0.8},${this.height * scale}
-                     L${this.width},${this.height * (scale - 0.1)} 
-                     L${this.width},${this.height} 
-                     L0,${this.height} Z"
-                  fill="${i === 0 ? "#3E2723" : i === 1 ? "#5D4037" : "#6D4C41"}" class="hill hill-layer-${i + 1}"/>
+              (offset) => `
+            <path d="M${offset},${this.height * 0.8}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.6 + Math.sin(x * 0.2) * 1.5;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#3E2723" class="${"layer-3"}"/>
           `,
             )
             .join("")}
+        </g>
 
-          <!-- Tree Layers with Different Types -->
-          <g class="trees">
+        
+        <g class="trees layer-4">
             ${Array.from(
-              { length: 15 },
+              { length: 50 },
               (_, i) => `
-              <g transform="translate(${i * (this.width / 10)}, ${this.height * 0.7})">
+              <g transform="translate(${(i * this.width) / 15}, ${this.height * 0.64})">
+                <polygon points="0,0 15,-20 30,0" fill="#23471e" class="tree tree-very-small"/>
+                <rect x="13" y="0" width="3" height="5" fill="#2b1b14" class="trunk"/>
+              </g>
+            `,
+            ).join("")}
+          </g>
+
+
+          <g class="trees layer-3">
+            ${Array.from(
+              { length: 50 },
+              (_, i) => `
+              <g transform="translate(${i * (this.width / 12)}, ${this.height * 0.68})">
                 <polygon points="0,0 20,-30 40,0" fill="#2d5a27" class="tree tree-small"/>
-                <polygon points="0,0 30,-50 60,0" fill="#4CAF50" class="tree tree-medium"/>
-                <polygon points="0,0 40,-70 80,0" fill="#81C784" class="tree tree-large"/>
                 <rect x="18" y="0" width="4" height="10" fill="#4a2f23" class="trunk"/>
               </g>
             `,
             ).join("")}
           </g>
+
+                          <g class="dirt-container">
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.7 + Math.sin(x * 0.2) * 2.3;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#5D4037" class="${"layer-2"}"/>
+          `,
+            )
+            .join("")}
+        </g>
+
+          <g class="trees layer-2">
+            ${Array.from(
+              { length: 30 },
+              (_, i) => `
+              <g transform="translate(${i * (this.width / 10)}, ${this.height * 0.75})">
+                <polygon points="0,0 30,-50 60,0" fill="#4CAF50" class="tree tree-medium"/>
+                <rect x="25" y="0" width="7" height="10" fill="#57392b" class="trunk"/>
+              </g>
+            `,
+            ).join("")}
+          </g>
+
+
+                <g class="dirt-container">
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.8}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.8 + Math.sin(x * 0.2) * 3;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#6D4C41" class="${"layer-1"}"/>
+          `,
+            )
+            .join("")}
+        </g>
+
+          <g class="trees layer-1">
+            ${Array.from(
+              { length: 10 },
+              (_, i) => `
+              <g transform="translate(${i * (this.width / 5)}, ${this.height * 0.8})">
+                <polygon points="0,0 40,-70 80,0" fill="#81C784" class="tree tree-large"/>
+                <rect x="35" y="0" width="10" height="10" fill="#826457" class="trunk"/>
+              </g>
+            `,
+            ).join("")}
+          </g>
+
         </g>
       `,
 
@@ -406,9 +490,9 @@ ${[1, 2, 3, 4, 5, 6]
         to { transform: translateX(0px); }
       }
 
-      .star-container-1 { animation: starMove 35s linear infinite; }
-      .star-container-2 { animation: starMove 40s linear infinite; }
-      .star-container-3 { animation: starMove 55s linear infinite; }
+      .star-container-1 { animation: starMove 40s linear infinite; }
+      .star-container-2 { animation: starMove 50s linear infinite; }
+      .star-container-3 { animation: starMove 70s linear infinite; }
 
     @keyframes cloud {
       from { transform: translateX(-700px); }
@@ -457,13 +541,7 @@ ${[1, 2, 3, 4, 5, 6]
     .textInAnimation {
       animation: textInAnimation 2s ease-out forwards;
     }
-    .hvAnim {
-      fill: white;
-      transition: fill 0.4s ease-in-out;
-    }  
-    .hvAnim:hover {
-      fill: #8653F8;
-    }  
+
     .fadeInAnimation {
       animation: fadeInAnimation 4s ease-out forwards;
     }
@@ -472,11 +550,6 @@ ${[1, 2, 3, 4, 5, 6]
       from { transform: translateX(0); }
       to { transform: translateX(-${this.width / 2}px); }
     }
-
-    .trees {
-      animation: treeScroll 10s linear infinite;
-    }
-
 
     .layer-1 {
       animation: move 10s linear infinite;
@@ -489,12 +562,6 @@ ${[1, 2, 3, 4, 5, 6]
     }
     .layer-4 {
       animation: move 20s linear infinite;
-    }
-    .layer-5 {
-      animation: move 30s linear infinite;
-    }
-    .layer-6 {
-      animation: move 40s linear infinite;
     }
   `;
   }
