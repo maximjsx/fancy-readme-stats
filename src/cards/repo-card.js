@@ -102,8 +102,7 @@ const renderRepoCard = (repo, options = {}) => {
     .join("");
 
   const height =
-    50 +
-    (descriptionLinesCount > 1 ? 120 : 110) +
+    120 +
     descriptionLinesCount * lineHeight;
 
   const i18n = new I18n({
