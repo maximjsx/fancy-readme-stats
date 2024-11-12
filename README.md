@@ -11,7 +11,7 @@
 Customizable & animated GitHub profile cards displaying stats, contact info & more.   
 With customizable themes, featuring animated parallax backgrounds like beaches, forests, or cityscapes.
 
-[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&theme=beach&email=your@email123.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
+[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=2&theme=beach&email=your@email123.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
 
 Leave a **star** ⭐ if you want me to make more themes<img src="https://github.com/user-attachments/assets/ae25e4b9-c97e-4fe9-bb24-72cd4eb5b99b" width="50">
 
