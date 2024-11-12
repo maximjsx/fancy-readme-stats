@@ -7,6 +7,7 @@ export type CommonOptions = {
   text_color: string;
   bg_color: string;
   theme: ThemeNames;
+  dark_bg: number;
   border_radius: number;
   border_color: string;
   locale: string;
@@ -27,7 +28,7 @@ export type StatCardOptions = CommonOptions & {
   text_bold: boolean;
   rank_icon: RankIcon;
   title_text: string;
-  email: string,
+  email: string;
   description_text: string;
 };
 

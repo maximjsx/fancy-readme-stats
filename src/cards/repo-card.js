@@ -77,6 +77,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
+    dark_bg = 1,
   } = options;
 
   const lineHeight = 10;
@@ -153,6 +154,7 @@ const renderRepoCard = (repo, options = {}) => {
     height,
     border_radius,
     theme: theme,
+    dark_bg: dark_bg,
   });
 
   card.setHideBorder(hide_border);

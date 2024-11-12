@@ -7,6 +7,7 @@ class Card {
     border_radius = 4.5,
     theme = "beach",
     title = "Stats",
+    dark_bg = 1,
   }) {
     this.width = width;
     this.height = height;
@@ -19,6 +20,7 @@ class Card {
     this.animations = true;
     this.a11yTitle = "";
     this.a11yDesc = "";
+    this.dark_bg = dark_bg;
   }
 
   /**
@@ -133,15 +135,19 @@ class Card {
           <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
             <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
           </mask>
+
         </defs>
 
         <g class="parallax-background" mask="url(#${maskId})">
+
+
         <!-- Sky Layer with Gradient -->
         <defs>
           <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#3a007b"/>
             <stop offset="100%" stop-color="#d46a00"/>
           </linearGradient>
+
         </defs>
         <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#skyGradient)" class="sky"/>
 
@@ -188,7 +194,7 @@ class Card {
         <!-- Cloud Layers -->
   <path d="M30,40 Q40,30 55,35 Q70,20 90,35 Q110,30 120,40 Q130,35 140,40 Q150,30 160,40"
         stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
-  <path d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
+  <path  d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
         stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
   <path d="M310,25 Q325,10 340,20 Q355,10 370,20 Q385,5 400,20 Q415,10 430,25"
         stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
@@ -260,6 +266,8 @@ class Card {
             )
             .join("")}
         </g>
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+        
               </g>
       `,
 
@@ -502,6 +510,7 @@ ${[1, 2, 3, 4, 5, 6]
       50% { opacity: 0.1; }
       100% { opacity: 1; }
     }
+
 
     @keyframes floatAndMove {
     from { transform: translateX(-${this.width + 1}px) translateY(0); }

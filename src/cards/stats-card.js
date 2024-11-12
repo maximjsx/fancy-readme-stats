@@ -164,6 +164,7 @@ const renderStatsCard = (stats, options = {}) => {
     text_bold = true,
     bg_color,
     theme = "beach",
+    dark_bg = 1,
     custom_title,
     border_radius,
     border_color,
@@ -353,6 +354,7 @@ const renderStatsCard = (stats, options = {}) => {
     height,
     border_radius,
     theme: theme,
+    dark_bg: dark_bg
   });
 
   card.setHideBorder(hide_border);

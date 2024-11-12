@@ -25,6 +25,7 @@ export default async (req, res) => {
     border_radius,
     number_format,
     hide_border,
+    dark_bg,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -76,6 +77,7 @@ export default async (req, res) => {
         custom_title,
         border_radius,
         number_format,
+        dark_bg,
       }),
     );
   } catch (err) {
