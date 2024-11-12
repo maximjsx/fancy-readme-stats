@@ -103,7 +103,31 @@ class Card {
   }
 
   renderParallaxBackground() {
-    const maskId = `mask-${Math.random().toString(36).substring(7)}`; 
+    const maskId = `mask-${Math.random().toString(36).substring(7)}`;
+
+    const starGroups = Array.from({ length: 3 }, (_, i) => {
+      const stars = Array.from(
+        { length: 20 },
+        () => `
+        <circle 
+          cx="${Math.random() * this.width}"
+          cy="${Math.random() * this.height * 0.3}"
+          r="1"
+          fill="white"
+          class="star-group-${i + 1}"
+        />
+      `,
+      ).join("");
+
+      return `
+        <g class="star-container-${i + 1}">
+          ${stars}
+          <g class="star-container-${i + 1}-duplicate" transform="translate(${this.width}, 0)">
+            ${stars}
+          </g>
+        </g>
+      `;
+    }).join("");
 
     const backgrounds = {
       beach: `
@@ -114,7 +138,7 @@ class Card {
         </defs>
 
         <g class="parallax-background" mask="url(#${maskId})">
-        <!-- Sky Layer with Gradient (Static) -->
+        <!-- Sky Layer with Gradient -->
         <defs>
           <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#3a007b"/>
@@ -163,7 +187,7 @@ class Card {
           ).join("")}
         </g>
 
-        <!-- Cloud Layer with Clouds -->
+        <!-- Cloud Layers -->
   <path d="M30,40 Q40,30 55,35 Q70,20 90,35 Q110,30 120,40 Q130,35 140,40 Q150,30 160,40"
         stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
   <path d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
@@ -239,26 +263,47 @@ class Card {
             .join("")}
         </g>
               </g>
-    `,
+      `,
 
       forest: `
-        <g class="parallax-background">
-          <!-- Sky Layer -->
-          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#a5d6a7" class="sky"/>
+        <defs>
+          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+            <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="white"/>
+          </mask>
+          <linearGradient id="forestGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4CAF50"/>
+            <stop offset="100%" stop-color="#1E88E5"/>
+          </linearGradient>
+        </defs>
+
+        <g class="parallax-background" mask="url(#${maskId})">
+          <!-- Sky Layer with Gradient -->
+          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
           
-          <!-- Mountain Layer -->
-          <path d="M0,${this.height * 0.6} 
-                   L${this.width * 0.3},${this.height * 0.3} 
-                   L${this.width * 0.6},${this.height * 0.6}" 
-                fill="#4b6455" class="mountain"/>
-          
-          <!-- Trees Layer -->
+          <!-- Hill Layers -->
+          ${[0.7, 0.75, 0.8]
+            .map(
+              (scale, i) => `
+            <path d="M0,${this.height * scale} 
+                     L${this.width * 0.4},${this.height * (scale - 0.15)} 
+                     L${this.width * 0.8},${this.height * scale}
+                     L${this.width},${this.height * (scale - 0.1)} 
+                     L${this.width},${this.height} 
+                     L0,${this.height} Z"
+                  fill="${i === 0 ? "#3E2723" : i === 1 ? "#5D4037" : "#6D4C41"}" class="hill hill-layer-${i + 1}"/>
+          `,
+            )
+            .join("")}
+
+          <!-- Tree Layers with Different Types -->
           <g class="trees">
             ${Array.from(
-              { length: 5 },
+              { length: 15 },
               (_, i) => `
-              <g transform="translate(${i * (this.width / 5)}, ${this.height * 0.6})">
-                <polygon points="0,0 20,-30 40,0" fill="#2d5a27" class="tree"/>
+              <g transform="translate(${i * (this.width / 10)}, ${this.height * 0.7})">
+                <polygon points="0,0 20,-30 40,0" fill="#2d5a27" class="tree tree-small"/>
+                <polygon points="0,0 30,-50 60,0" fill="#4CAF50" class="tree tree-medium"/>
+                <polygon points="0,0 40,-70 80,0" fill="#81C784" class="tree tree-large"/>
                 <rect x="18" y="0" width="4" height="10" fill="#4a2f23" class="trunk"/>
               </g>
             `,
@@ -268,36 +313,60 @@ class Card {
       `,
 
       city: `
-        <g class="parallax-background">
-          <!-- Sky Layer -->
-          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#1a237e" class="sky"/>
-          
-          <!-- Stars Layer -->
-          ${Array.from(
-            { length: 20 },
-            () => `
-            <circle cx="${Math.random() * this.width}" 
-                    cy="${Math.random() * this.height * 0.5}" 
-                    r="1" 
-                    fill="white" 
-                    class="star"/>
-          `,
-          ).join("")}
-          
-          <!-- Buildings Layer -->
-          <g class="buildings">
-            ${Array.from(
-              { length: 6 },
-              (_, i) => `
-              <rect x="${i * (this.width / 6)}" 
-                    y="${this.height * 0.4}" 
-                    width="${this.width / 8}" 
-                    height="${Math.random() * this.height * 0.4 + this.height * 0.2}" 
-                    fill="#263238" 
+        <defs>
+          <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+            <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="white"/>
+          </mask>
+          <linearGradient id="cityGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0010A8"/>
+            <stop offset="100%" stop-color="#050036"/>
+          </linearGradient>
+        </defs>
+
+        <g class="parallax-background" mask="url(#${maskId})">
+          <!-- Sky Layer with Gradient -->
+          <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#cityGradient)" class="sky"/>
+
+          ${starGroups}
+
+          <!-- Buildings-->
+];
+${[1, 2, 3, 4, 5, 6]
+  .map(
+    (layer) => `
+      <g class="buildings layer-${layer}">
+        ${Array.from({ length: 12 }, (_, i) => {
+          const rectHeight =
+            this.height * 0.3 + this.height * (0.2 + (-layer + 6) / 15);
+
+          const colors = [
+            "#0F154A",
+            "#1F2660",
+            "#303776",
+            "#3F468A",
+            "#4E558F",
+            "#5F6599",
+            "#717599",
+            "#8C8FA8",
+            "#CFD8DC",
+            "#989AAB",
+          ];
+          const colorIndex = layer + 1;
+          return `
+              <rect x="${i * (this.width / 6)}"
+                    y="${this.height * 1.37 - rectHeight}" 
+                    width="${(this.width / ((-layer + 6) * 5)) * 2}"
+                    height="${rectHeight}"
+                    opacity="${0.8 + layer / 10}"
+                    fill="${colors[colorIndex]}"
                     class="building"/>
-            `,
-            ).join("")}
-          </g>
+            `;
+        }).join("")}
+      </g>
+    `,
+  )
+  .join("")}
+
         </g>
       `,
     };
@@ -325,6 +394,20 @@ class Card {
     from { transform: translateX(-${this.width}px); }
       to { transform: translateX(0); }
     }
+
+    @keyframes move2 {
+    from { transform: translateX(0); }
+      to { transform: translateX(${this.width}px); }
+    }
+
+      @keyframes starMove {
+        from { transform: translateX(-${this.width}px); }
+        to { transform: translateX(0px); }
+      }
+
+      .star-container-1 { animation: starMove 35s linear infinite; }
+      .star-container-2 { animation: starMove 40s linear infinite; }
+      .star-container-3 { animation: starMove 55s linear infinite; }
 
     @keyframes cloud {
       from { transform: translateX(-700px); }
@@ -375,6 +458,35 @@ class Card {
     }
     .fadeInAnimation {
       animation: fadeInAnimation 4s ease-out forwards;
+    }
+      
+    @keyframes treeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-${this.width / 2}px); }
+    }
+
+    .trees {
+      animation: treeScroll 10s linear infinite;
+    }
+
+
+    .layer-1 {
+      animation: move 10s linear infinite;
+    }
+    .layer-2 {
+      animation: move 14s linear infinite;
+    }
+    .layer-3 {
+      animation: move 17s linear infinite;
+    }
+    .layer-4 {
+      animation: move 20s linear infinite;
+    }
+    .layer-5 {
+      animation: move 30s linear infinite;
+    }
+    .layer-6 {
+      animation: move 40s linear infinite;
     }
   `;
   }
