@@ -192,9 +192,7 @@ class Card {
         <g class="sea-container">
           ${this.renderSeaLayer()}
         </g>
-        <g class="sea-container">
-          ${this.renderSeaLayer(true)}
-        </g>
+
 
         <!-- Sand Layer -->
         <g class="sand-container">
@@ -252,63 +250,194 @@ class Card {
 
   renderCloudLayers() {
     return `
-    <path d="M30,40 Q40,30 55,35 Q70,20 90,35 Q110,30 120,40 Q130,35 140,40 Q150,30 160,40"
-          stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
-    <path  d="M180,50 Q190,35 205,40 Q220,30 240,40 Q260,35 270,50 Q280,45 290,50"
-          stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
-    <path d="M310,25 Q325,10 340,20 Q355,10 370,20 Q385,5 400,20 Q415,10 430,25"
-          stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
-    <path d="M80,80 Q95,65 115,70 Q135,60 155,70 Q175,65 185,80 Q195,70 205,80"
-          stroke="white" stroke-width="20" fill="none" opacity="0.2" class="cloud"/>
-    <path d="M470,40 Q480,30 495,35 Q510,20 530,35 Q550,30 560,40"
-          stroke="white" stroke-width="20" fill="none" opacity="0.3" class="cloud"/>
-    <path d="M490,80 Q500,65 520,70 Q540,60 560,70 Q580,65 590,80"
-          stroke="white" stroke-width="20" fill="none" opacity="0.1" class="cloud"/>
+
+    <g class="cloud">
+    <svg fill="#ffffff" x="-392" y="40" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1z">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="-310" y="20" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M27.873 28c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070s0.649-8.743-7.361-9.74c-6.865-0.701-8.954 5.679-8.954 5.679s-2.068-1.988-4.873-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.577 1.084-5.577 6.768c0.125 5.677 6.057 5.734 6.057 5.734">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="-206" y="27" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M402.019,199.463h-5.941c-5.517-39.132-41.718-66.389-80.851-60.864c-4.877,0.689-9.673,1.882-14.309,3.547 c-35.833-50.791-106.058-62.922-156.849-27.081c-28.106,19.826-45.602,51.415-47.5,85.759 c-59.655,6.702-102.583,60.488-95.88,120.143c6.238,55.531,53.569,97.29,109.445,96.553h291.885 c60.224,0.512,109.461-47.884,109.973-108.108s-47.884-109.461-108.108-109.973c-0.625-0.008-1.249-0.008-1.866,0V199.463z">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="-135" y="10" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="M210.4,116.8c-0.4,0-0.8,0.1-1.2,0.1c0.2-1.9,0.3-3.8,0.3-5.7c0-32.6-26.4-59-59-59c-29.8,0-54.4,22.1-58.3,50.8 c-4-1.3-8.1-2.1-12.4-2.1c-22.4,0-40.6,18.2-40.6,40.6c0,0.2,0.1,0.4,0.1,0.5c-1.8-0.3-3.7-0.5-5.6-0.5c-16,0-28.8,12.9-28.8,28.7 s12.8,28.7,28.7,28.7c0,0,175.5-0.9,176.7-0.9c22.4,0,40.6-18.2,40.6-40.6C251,135,232.8,116.8,210.4,116.8z">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="-70" y="-1" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1z">
+    </path> 
+    </svg>
+    </g>
+
+        <g class="cloud">
+    <svg fill="#ffffff" x="0" y="30" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M27.873 28c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070s0.649-8.743-7.361-9.74c-6.865-0.701-8.954 5.679-8.954 5.679s-2.068-1.988-4.873-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.577 1.084-5.577 6.768c0.125 5.677 6.057 5.734 6.057 5.734">
+    </path> 
+    </svg>
+    </g>
+    <g class="cloud">
+    <svg fill="#ffffff" x="140" y="0" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1z">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="250" y="41" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M27.873 28c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070s0.649-8.743-7.361-9.74c-6.865-0.701-8.954 5.679-8.954 5.679s-2.068-1.988-4.873-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.577 1.084-5.577 6.768c0.125 5.677 6.057 5.734 6.057 5.734">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="350" y="10" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M402.019,199.463h-5.941c-5.517-39.132-41.718-66.389-80.851-60.864c-4.877,0.689-9.673,1.882-14.309,3.547 c-35.833-50.791-106.058-62.922-156.849-27.081c-28.106,19.826-45.602,51.415-47.5,85.759 c-59.655,6.702-102.583,60.488-95.88,120.143c6.238,55.531,53.569,97.29,109.445,96.553h291.885 c60.224,0.512,109.461-47.884,109.973-108.108s-47.884-109.461-108.108-109.973c-0.625-0.008-1.249-0.008-1.866,0V199.463z">
+    </path> 
+    </svg>
+    </g>
+        <g class="cloud">
+    <svg fill="#ffffff" x="400" y="40" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="M210.4,116.8c-0.4,0-0.8,0.1-1.2,0.1c0.2-1.9,0.3-3.8,0.3-5.7c0-32.6-26.4-59-59-59c-29.8,0-54.4,22.1-58.3,50.8 c-4-1.3-8.1-2.1-12.4-2.1c-22.4,0-40.6,18.2-40.6,40.6c0,0.2,0.1,0.4,0.1,0.5c-1.8-0.3-3.7-0.5-5.6-0.5c-16,0-28.8,12.9-28.8,28.7 s12.8,28.7,28.7,28.7c0,0,175.5-0.9,176.7-0.9c22.4,0,40.6-18.2,40.6-40.6C251,135,232.8,116.8,210.4,116.8z">
+    </path> 
+    </svg>
+    </g>
+
+        <g class="cloud">
+    <svg fill="#ffffff" x="432" y="6" width="64px" height="64px" viewBox="0 0 35.00 35.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00035">
+    <path opacity="0.2" d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1z">
+    </path> 
+    </svg>
+    </g>
   `;
   }
 
-  renderSeaLayer(isSecondLayer = false) {
+  renderSeaLayer() {
     return `
-    ${[0, this.width]
-      .map(
-        (offset) => `
-          <path d="M${offset},${this.height * 0.6}
-                   ${Array.from({ length: 52 })
-                     .map((_, i) => {
-                       const x =
-                         offset + (this.width / (isSecondLayer ? 30 : 40)) * i;
-                       const y =
-                         this.height * 0.6 +
-                         Math.sin(x * 0.3) * (isSecondLayer ? 8 : 9);
-                       return `${i === 0 ? "M" : "L"}${x},${y}`;
-                     })
-                     .join(" ")} 
-                   L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                fill="${isSecondLayer ? "#001e42" : "#002d62"}" opacity="0.9" class="${isSecondLayer ? "sea2" : "sea"}"/>
-        `,
-      )
-      .join("")}
+
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.57 + Math.sin(x * 0.2) * 2.6;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#043f85" class="${"layer-6"}"/>
+          `,
+            )
+            .join("")}
+
+
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.6 + Math.sin(x * 0.2) * 2.6;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#043875" class="${"layer-5"}"/>
+          `,
+            )
+            .join("")}
+
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.64 + Math.sin(x * 0.2) * 2.6;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#023066" class="${"layer-4"}"/>
+          `,
+            )
+            .join("")}
+
+
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.67 + Math.sin(x * 0.2) * 2.6;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#012652" class="${"layer-3"}"/>
+          `,
+            )
+            .join("")}
+
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.7 + Math.sin(x * 0.2) * 2.4;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#001e42" class="${"layer-2"}"/>
+          `,
+            )
+            .join("")}
+
+
   `;
   }
 
   renderSandLayer() {
     return `
-    ${[0, this.width]
-      .map(
-        (offset) => `
-          <path d="M${offset},${this.height * 0.8}
-                   ${Array.from({ length: 37 })
-                     .map((_, i) => {
-                       const x = offset + (this.width / 25) * i;
-                       const y = this.height * 0.8 + Math.sin(x * 0.2) * 3;
-                       return `${i === 0 ? "M" : "L"}${x},${y}`;
-                     })
-                     .join(" ")} 
-                   L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                fill="#b68a00" class="sand"/>
-        `,
-      )
-      .join("")}
+
+    <g class="dirt-container">
+          ${[0, this.width]
+            .map(
+              (offset) => `
+            <path d="M${offset},${this.height * 0.7}
+                     ${Array.from({ length: 37 })
+                       .map((_, i) => {
+                         const x = offset + (this.width / 25) * i;
+                         const y = this.height * 0.7 + Math.sin(x * 0.2) * 2.3;
+                         return `${i === 0 ? "M" : "L"}${x},${y}`;
+                       })
+                       .join(" ")} 
+                     L${offset + this.width},${this.height} L${offset},${this.height} Z"
+                  fill="#b68a00" class="${"sand"}"/>
+          `,
+            )
+            .join("")}
+        </g>
+
   `;
   }
 
@@ -502,8 +631,8 @@ class Card {
       .star-container-3 { animation: starMove 70s linear infinite; }
 
     @keyframes cloud {
-      from { transform: translateX(-700px); }
-      to { transform: translateX(${this.width + 20}px); }
+      from { transform: translateX(-550px); }
+      to { transform: translateX(${this.width + 600}px); }
     }
 
     @keyframes starTwinkle {
@@ -526,7 +655,7 @@ class Card {
 
     /* Theme-specific styles */
     .cloud {
-      animation: cloud 56s linear infinite;
+      animation: cloud 130s linear infinite;
     }
     .sea {
       animation: floatAndMove 16s linear infinite;
