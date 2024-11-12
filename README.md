@@ -1,6 +1,6 @@
 # Fancy GitHub Profile Cards
 
-A strongly minimized fork of https://github.com/anuraghazra/github-readme-stats
+A strongly modified fork of https://github.com/anuraghazra/github-readme-stats
 
 Customizable & animated GitHub profile cards displaying stats, contact info & more.   
 With customizable themes, featuring animated parallax backgrounds like beaches, forests, or cityscapes.
