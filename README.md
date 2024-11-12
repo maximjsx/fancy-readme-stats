@@ -24,7 +24,8 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 
 ### Themes:
 [![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=maxim@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/max1mde/fancy-readme-stats)
-[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=test@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/max1mde/fancy-readme-stats)
+[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=maxim@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/max1mde/fancy-readme-stats)
+[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&email=maxim@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/max1mde/fancy-readme-stats)
 
 ## Contributing
 Contributions are welcome!
