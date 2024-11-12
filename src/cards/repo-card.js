@@ -101,9 +101,7 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height =
-    120 +
-    descriptionLinesCount * lineHeight;
+  const height = 150; // hardcode for better look cuz different sized cards next to each other look weird
 
   const i18n = new I18n({
     locale,
