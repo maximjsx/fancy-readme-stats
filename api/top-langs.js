@@ -28,7 +28,7 @@ export default async (req, res) => {
     count_weight,
     custom_title,
     locale,
-    darl_bg,
+    dark_bg,
     border_radius,
     border_color,
     disable_animations,
