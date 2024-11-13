@@ -132,8 +132,8 @@ class Card {
     const backgrounds = {
       beach: `
       <defs>
-        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
         </mask>
       </defs>
 
@@ -205,8 +205,8 @@ class Card {
 
       forest: `
       <defs>
-        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
         </mask>
         <linearGradient id="forestGradient" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#4CAF50"/>
@@ -226,8 +226,8 @@ class Card {
 
       city: `
       <defs>
-        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+         <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
         </mask>
         <linearGradient id="cityGradient" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#0010A8"/>
@@ -247,8 +247,8 @@ class Card {
       rain: `
 
       <defs>
-        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
         </mask>
       </defs>
 
@@ -272,8 +272,8 @@ class Card {
       snow: `
       
  <defs>
-        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
-          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
         </mask>
       </defs>
 
