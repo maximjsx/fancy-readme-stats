@@ -60,19 +60,19 @@ There are also other cards than the ones above.
 
 ### Top Langs
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=2" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut&update=2" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal&update=2" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie&update=2" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical&update=2" />
 </a>
 
 ### Wakatime
