@@ -732,6 +732,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide_progress,
     theme,
     layout,
+    dark_bg,
     custom_title,
     locale,
     langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
@@ -806,6 +807,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     width,
     height,
     border_radius,
+    theme,
+    dark_bg
   });
 
   if (disable_animations) {

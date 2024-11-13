@@ -265,7 +265,7 @@ class Card {
           ${this.renderRainDrops()}
         </g>
 
-        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
       </g>
       
       `,
@@ -290,7 +290,7 @@ class Card {
           ${this.renderSnowflakes()}
         </g>
 
-        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
       </g>
       
       `,

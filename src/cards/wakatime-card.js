@@ -229,7 +229,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
-    theme = "default",
+    theme = "beach",
+    dark_bg = 1,
     hide_progress,
     custom_title,
     locale,
@@ -394,6 +395,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     width: 495,
     height,
     border_radius,
+    theme,
+    dark_bg
   });
 
   if (disable_animations) {

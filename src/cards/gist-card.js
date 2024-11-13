@@ -52,6 +52,7 @@ const renderGistCard = (gistData, options = {}) => {
     theme,
     border_radius,
     border_color,
+    dark_bg,
     show_owner = false,
     hide_border = false,
   } = options;
@@ -120,6 +121,8 @@ const renderGistCard = (gistData, options = {}) => {
     width: CARD_DEFAULT_WIDTH,
     height,
     border_radius,
+    theme,
+    dark_bg
   });
 
   card.setCSS(`
