@@ -35,11 +35,57 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 - forest
 - beach
 - city
+- rain
+- snow
 
 ### Themes:
 [![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false&update=2)](https://github.com/max1mde/fancy-readme-stats)
 [![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=2)](https://github.com/max1mde/fancy-readme-stats)
 [![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&email=ceo@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=2)](https://github.com/max1mde/fancy-readme-stats)
+[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&email=ceo@nextfight.net&description=rain&title=Theme&show_icons=true&include_all_commits=false&update=2)](https://github.com/max1mde/fancy-readme-stats)
+[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=snow&email=ceo@nextfight.net&description=snow&title=Theme&show_icons=true&include_all_commits=false&update=2)](https://github.com/max1mde/fancy-readme-stats)
+
+# Cards
+There are also other cards than the ones above.
+
+### Repository
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/pin/?username=max1mde&repo=fancy-readme-stats&theme=snow&dark_bg=7&show_icons=true&update=7" />
+</a>
+
+### Gists
+<a href="https://gist.github.com/max1mde/437532d7b08f7e54c2bb7147828ab0e7/">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true" />
+</a>
+
+### Top Langs
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact" />
+</a><br>
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut" />
+</a><br>
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal" />
+</a><br>
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie" />
+</a><br>
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical" />
+</a>
+
+### Wakatime
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true" />
+</a>
+
+<br>
+
+<a href="https://github.com/max1mde/fancy-readme-stats">
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact" />
+</a>
+
 
 ## Contributing
 Contributions are welcome!
