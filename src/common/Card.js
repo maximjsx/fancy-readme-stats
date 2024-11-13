@@ -243,9 +243,89 @@ class Card {
                 <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
       </g>
     `,
+
+      rain: `
+
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        </mask>
+      </defs>
+
+      <g class="parallax-background" mask="url(#${maskId})">
+        <defs>
+          <linearGradient id="rainGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#003e61"/>
+            <stop offset="100%" stop-color="#00613f"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#rainGradient)" class="sky"/>
+
+        <g class="rain-container">
+          ${this.renderRainDrops()}
+        </g>
+
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+      
+      `,
+      snow: `
+      
+ <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="${this.height}">
+          <rect x="0" y="0" width="${this.width - 1}" height="${this.height - 1}" rx="${this.border_radius}" fill="white"/>
+        </mask>
+      </defs>
+
+      <g class="parallax-background" mask="url(#${maskId})">
+        <defs>
+          <linearGradient id="snowGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0b0b0b"/>
+            <stop offset="100%" stop-color="#324651"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#snowGradient)" class="sky"/>
+
+        <g class="snow-container">
+          ${this.renderSnowflakes()}
+        </g>
+
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+      
+      `,
     };
 
-    return backgrounds[this.theme] || "";
+    return backgrounds[this.theme] || backgrounds["beach"];
+  }
+
+  renderRainDrops() {
+    return Array.from({ length: 250 }, () => {
+      const x = Math.random() * this.width;
+      const y = -20;
+      const size = Math.random() * 2.3;
+      const speed = Math.random() * 20 + 5;
+      return `
+        <g>
+          <rect x="${x}" y="${y}" opacity="0.9" width="${size}" height="${size * 5}" fill="#8ed4f9" class="rain-drop" style="animation: rainFall ${speed}s linear infinite"/>
+        </g>
+      `;
+    }).join("");
+  }
+  renderSnowflakes() {
+    return Array.from({ length: 100 }, () => {
+      const x = Math.random() * this.width;
+      const y = 0;
+      const size = Math.random() * 8 + 4;
+      const speed = Math.random() * 20 + 5;
+      return `
+        <g style="animation: rainFall ${speed}s linear infinite">
+          <svg fill="#ffffff" class="rain-drop" x="${x}" y="${y}" height="${size}px" width="${size}px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 120 120" xml:space="preserve" stroke="#ffffff">
+            <path d="M105,82.5l-13.7-7.9l12-7c1.3-0.8,1.8-2.5,1-3.8c-0.8-1.3-2.5-1.8-3.8-1l-14.8,8.6L65.8,59.9l19.9-11.5l14.8,8.6 c0.4,0.3,0.9,0.4,1.4,0.4c1,0,1.9-0.5,2.4-1.4c0.8-1.3,0.3-3-1-3.8l-12-7l13.7-7.9c1.3-0.8,1.8-2.5,1-3.8c-0.8-1.3-2.5-1.8-3.8-1 l-13.7,7.9V26.4c0-1.5-1.2-2.8-2.8-2.8c-1.5,0-2.8,1.2-2.8,2.8v17.1L63,55V32l14.8-8.6c1.3-0.8,1.8-2.5,1-3.8 c-0.8-1.3-2.5-1.8-3.8-1l-12,7V9.8C63,8.2,61.8,7,60.2,7c-1.5,0-2.8,1.2-2.8,2.8v15.8l-12-7c-1.3-0.8-3-0.3-3.8,1 c-0.8,1.3-0.3,3,1,3.8L57.5,32v23L37.5,43.5V26.4c0-1.5-1.2-2.8-2.8-2.8c-1.5,0-2.8,1.2-2.8,2.8v13.9l-13.7-7.9 c-1.3-0.8-3-0.3-3.8,1c-0.8,1.3-0.3,3,1,3.8l13.7,7.9l-12,7c-1.3,0.8-1.8,2.5-1,3.8c0.5,0.9,1.5,1.4,2.4,1.4c0.5,0,1-0.1,1.4-0.4 l14.8-8.6l19.9,11.5L34.7,71.4l-14.8-8.6c-1.3-0.8-3-0.3-3.8,1c-0.8,1.3-0.3,3,1,3.8l12,7l-13.7,7.9c-1.3,0.8-1.8,2.5-1,3.8 c0.5,0.9,1.5,1.4,2.4,1.4c0.5,0,1-0.1,1.4-0.4l13.7-7.9v13.9c0,1.5,1.2,2.8,2.8,2.8c1.5,0,2.8-1.2,2.8-2.8V76.2l19.9-11.5v23 l-14.8,8.6c-1.3,0.8-1.8,2.5-1,3.8c0.5,0.9,1.5,1.4,2.4,1.4c0.5,0,1-0.1,1.4-0.4l12-7v15.8c0,1.5,1.2,2.8,2.8,2.8 c1.5,0,2.8-1.2,2.8-2.8V94.2l12,7c0.4,0.3,0.9,0.4,1.4,0.4c1,0,1.9-0.5,2.4-1.4c0.8-1.3,0.3-3-1-3.8L63,87.7v-23L83,76.2v17.1 c0,1.5,1.2,2.8,2.8,2.8c1.5,0,2.8-1.2,2.8-2.8V79.4l13.7,7.9c0.4,0.3,0.9,0.4,1.4,0.4c1,0,1.9-0.5,2.4-1.4 C106.8,85,106.3,83.3,105,82.5z"/>
+          </svg>
+        </g>
+      `;
+    }).join("");
   }
 
   renderCloudLayers() {
@@ -604,6 +684,14 @@ class Card {
     @keyframes fadeInAnimation {
       from { opacity: 0; }
       to { opacity: 1; }
+    }
+
+    @keyframes rainFall {
+        0% { transform: translateY(-100px); }
+        100% { transform: translateY(${this.height + 300}px); }
+    }
+    .rain-drop {
+        animation: rainFall 10s linear infinite;
     }
 
     @keyframes textInAnimation {
