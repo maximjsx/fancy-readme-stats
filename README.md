@@ -55,35 +55,35 @@ There are also other cards than the ones above.
 
 ### Gists
 <a href="https://gist.github.com/max1mde/437532d7b08f7e54c2bb7147828ab0e7/">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true&update=1" />
 </a>
 
 ### Top Langs
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut&update=1" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal&update=1" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie&update=1" />
 </a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical&update=1" />
 </a>
 
 ### Wakatime
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&update=1" />
 </a>
 
 <br>
 
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
 </a>
 
 
