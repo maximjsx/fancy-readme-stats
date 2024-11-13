@@ -77,13 +77,14 @@ There are also other cards than the ones above.
 
 ### Wakatime
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
 </a>
+
 
 <br>
 
 <a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
+  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&update=1" />
 </a>
 
 
