@@ -61,16 +61,16 @@ There are also other cards than the ones above.
 ### Top Langs
 <a href="https://github.com/max1mde/fancy-readme-stats">
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact" />
-</a>
+</a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut" />
-</a>
+</a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal" />
-</a>
+</a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie" />
-</a>
+</a><br>
 <a href="https://github.com/max1mde/fancy-readme-stats">
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical" />
 </a>
