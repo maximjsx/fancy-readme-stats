@@ -34,6 +34,7 @@ export const themes = {
     bg_color: "ffffff",
     border_color: "ffffff",
   },
+
 };
 
 export default themes;
