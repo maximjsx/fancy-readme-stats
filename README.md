@@ -1,5 +1,10 @@
 [![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=3&theme=beach&email=A%20strongly%20modified%20fork%20of%20anuraghazra%2Fgithub-readme-stats&show_icons=true&title=Fancy%20Readme%20Cards%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text%20and%20more%2E&include_all_commits=true&show_icons=true&update=1)](https://github.com/max1mde/fancy-readme-stats)
 
+**What is different in this for?**
+- 5 Animated parallax backgrounds for every card
+- Additional query parameters like `dark_bg` or `email` for the stats card
+- A full-width version of the stats card
+
 ### Leave a **star** ⭐ if you want me to make more themes<img src="https://github.com/user-attachments/assets/ae25e4b9-c97e-4fe9-bb24-72cd4eb5b99b" width="50">
 
 ## Getting Started
