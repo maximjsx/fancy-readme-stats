@@ -1,7 +1,7 @@
 **JeTyKe License v2.1**
 
-**DATE (Modified)**: 11/15/2024  
-**AUTHOR**: max1mde
+**DATE (Modified)**: 11/17/2024  
+**AUTHOR**: [max1mde](https://github.com/max1mde)
 
 **1. DEFINITIONS**
    - **SOFTWARE**: The original source code provided under this license.
