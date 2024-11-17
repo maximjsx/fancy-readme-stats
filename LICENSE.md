@@ -1,7 +1,7 @@
 **JeTyKe License v2.1**
 
 **DATE (Modified)**: 11/17/2024  
-**AUTHOR**: [max1mde](https://github.com/max1mde)
+**AUTHOR**: [max1mde](https://github.com/max1mde)  
 **AUTHOR OF THE ORIGINAL PROJECT**: [anuraghazra](https://github.com/anuraghazra)
 
 **1. DEFINITIONS**
