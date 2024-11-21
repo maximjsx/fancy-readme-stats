@@ -241,7 +241,7 @@ class Card {
       ${starGroups}
 
     <g>
-      <svg width="100" height="100" x="${this.width / 2}" y="5" viewBox="0 0 1278 1272" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="100" height="100" x="${this.width / 2 - 50}" y="5" viewBox="0 0 1278 1272" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="639" cy="636" rx="639" ry="636" fill="url(#paint0_radial_2_2)"/>
         <g clip-path="url(#clip0_2_2)">
         <path d="M380.909 330.387C545.869 186.175 794.947 211.638 939.159 376.597C1083.37 541.556 1070.62 786.419 905.666 930.633C740.706 1074.85 486.95 1062.97 342.738 898.011C198.525 733.053 215.95 474.6 380.909 330.387Z" fill="#F3ECDD"/>
