@@ -1,5 +1,7 @@
 **JeTyKe License v2.1**
 
+Copyright (c) 2020 Anurag Hazra
+
 **DATE (Modified)**: 11/17/2024  
 **AUTHOR**: [max1mde](https://github.com/max1mde)  
 
