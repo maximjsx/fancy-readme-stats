@@ -1,7 +1,9 @@
-[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=3&theme=beach&email=A%20strongly%20modified%20fork%20of%20anuraghazra%2Fgithub-readme-stats&show_icons=true&title=Fancy%20Readme%20Cards%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text%20and%20more%2E&include_all_commits=true&show_icons=true&update=1)](https://github.com/max1mde/fancy-readme-stats)
+Fork of https://github.com/anuraghazra/github-readme-stats
+
+[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=3&theme=beach&email=6%20animated%20backgrounds&show_icons=true&title=Fancy%20Readme%20Cards%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text%20and%20more%2E&include_all_commits=true&show_icons=true&update=1)](https://github.com/max1mde/fancy-readme-stats)
 
 **What is different in this fork?**
-- 5 Animated parallax backgrounds for every card
+- 6 Animated parallax backgrounds for every card
 - Additional query parameters like `dark_bg` or `email` for the stats card
 - A full-width version of the stats card
 
