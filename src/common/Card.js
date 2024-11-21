@@ -219,97 +219,69 @@ class Card {
         <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
         ${starGroups}
 
-        ${this.renderScene()}
+        ${this.renderScene("#3E2723", "#5D4037", "#6D4C41", "#2b1b14", "#4a2f23", "#57392b", "#826457", "#23471e", "#2d5a27", "#4CAF50", "#81C784")}
                 <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
       </g>
     `,
 
-
-      houses: `
-      <defs>
-        <!-- Gradients for walls -->
-        <linearGradient id="wallGradient1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#e1e1e1"/>
-            <stop offset="100%" stop-color="#bdbdbd"/>
-        </linearGradient>
-        <linearGradient id="wallGradient2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f2d9d0"/>
-            <stop offset="100%" stop-color="#e6beb4"/>
-        </linearGradient>
-        <linearGradient id="wallGradient3" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#cce5ff"/>
-            <stop offset="100%" stop-color="#99ccff"/>
-        </linearGradient>
-        <!-- Window gradient -->
-        <linearGradient id="windowGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#d3f1ff"/>
-            <stop offset="100%" stop-color="#92cde0"/>
-        </linearGradient>
+      forest_winter: `
+    <defs>
+      <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+        <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
+      </mask>
+      <linearGradient id="forestGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#041028"/>
+        <stop offset="50%" stop-color="#2C4D7A"/>
+      </linearGradient>
     </defs>
 
-    <!-- Background -->
-    <rect x="0" y="0" width="100%" height="100%" fill="#87ceeb" /> <!-- Sky -->
+    <g class="parallax-background" mask="url(#${maskId})">
+      <!-- Sky Layer with Gradient -->
+      <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#forestGradient)" class="sky"/>
+      ${starGroups}
 
-    <!-- Clouds -->
-    <g class="clouds">
-        <path d="M50,60 Q30,40 70,40 Q90,20 120,40 Q150,20 180,40 Q200,40 180,60 Z" fill="white" opacity="0.9" />
-        <path d="M350,80 Q320,50 370,50 Q390,30 420,50 Q450,30 470,50 Q490,50 470,80 Z" fill="white" opacity="0.9" />
-        <path d="M200,50 Q180,30 220,30 Q240,10 270,30 Q290,10 320,30 Q340,30 320,50 Z" fill="white" opacity="0.9" />
+    <g>
+      <svg width="100" height="100" x="452.5" y="5" viewBox="0 0 1278 1272" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="639" cy="636" rx="639" ry="636" fill="url(#paint0_radial_2_2)"/>
+        <g clip-path="url(#clip0_2_2)">
+        <path d="M380.909 330.387C545.869 186.175 794.947 211.638 939.159 376.597C1083.37 541.556 1070.62 786.419 905.666 930.633C740.706 1074.85 486.95 1062.97 342.738 898.011C198.525 733.053 215.95 474.6 380.909 330.387Z" fill="#F3ECDD"/>
+        <path d="M407.284 375.58C563.406 239.092 796.07 259.68 928.883 411.597C1061.7 563.514 1046.68 791.886 890.558 928.372C734.436 1064.86 497.225 1057 364.413 905.077C231.6 753.158 251.163 512.067 407.284 375.58Z" fill="#ECE1D0"/>
+        <path d="M620.303 457.216C592.303 515.452 521.814 537.438 463.578 509.438C405.342 481.438 380.397 413.566 408.397 355.33C436.397 297.094 506.578 270.881 564.814 298.881C623.05 326.881 648.303 398.98 620.303 457.216Z" fill="#D7D1C4"/>
+        <path opacity="0.06" d="M439.139 388.714C467.139 330.478 537.32 304.266 595.556 332.266C602.005 335.366 608.048 339.009 613.659 343.114C602.198 324.506 585.611 308.881 564.814 298.881C506.578 270.881 436.397 297.094 408.397 355.33C383.702 406.694 400.198 465.547 444.391 497.934C424.883 465.967 421.488 425.428 439.139 388.714Z" fill="#040000"/>
+        <path d="M578.259 577.338C576.431 568.38 582.494 559.872 591.45 558.044C600.408 556.216 609.025 561.73 610.853 570.688C612.681 579.645 607.016 588.603 598.058 590.431C589.102 592.258 580.088 586.295 578.259 577.338Z" fill="#D7D1C4"/>
+        <path opacity="0.5" d="M806.436 387.611C804.608 378.653 810.67 370.145 819.627 368.317C828.583 366.489 837.202 372.003 839.03 380.961C840.858 389.919 835.192 398.877 826.234 400.705C817.277 402.533 808.262 396.569 806.436 387.611Z" fill="white"/>
+        <path d="M680.809 858.628C694.389 846.756 714.892 848.853 726.764 862.431C738.636 876.011 737.586 896.167 724.006 908.039C710.427 919.911 689.538 918.933 677.666 905.353C665.795 891.777 667.23 870.5 680.809 858.628Z" fill="#D7D1C4"/>
+        <path opacity="0.5" d="M330.138 581.392C328.309 572.434 334.372 563.927 343.328 562.098C352.286 560.27 360.903 565.784 362.731 574.742C364.559 583.7 358.894 592.658 349.936 594.486C340.98 596.313 331.966 590.35 330.138 581.392Z" fill="white"/>
+        <path d="M971.745 676.3C965.925 733.566 913.531 773.331 856.266 767.509C799 761.689 757.548 712.384 763.37 655.119C769.191 597.853 820.047 554.641 877.312 560.461C934.578 566.283 977.567 619.034 971.745 676.3Z" fill="#D7D1C4"/>
+        <path d="M509.692 753.544C532.553 793.119 517.297 843.069 477.722 865.93C438.147 888.791 388.547 876.308 365.686 836.731C342.825 797.156 355.489 745.702 395.064 722.841C434.639 699.978 486.83 713.967 509.692 753.544Z" fill="#D7D1C4"/>
+        <path opacity="0.06" d="M415.281 742.908C444.131 726.242 479.673 729.178 505.681 747.314C481.161 712.566 432.481 701.225 395.063 722.839C355.488 745.7 342.823 797.155 365.684 836.73C371.997 847.656 380.353 856.506 389.967 863.128C388.538 861.098 387.172 858.997 385.902 856.797C363.042 817.223 375.706 765.769 415.281 742.908Z" fill="#040000"/>
+        <path opacity="0.06" d="M785.419 676.913C791.239 619.647 842.094 576.434 899.361 582.255C918.45 584.195 935.948 591.355 950.584 602.155C933.386 579.445 907.311 563.513 877.311 560.464C820.045 554.644 769.191 597.856 763.37 655.122C759.519 693.009 776.364 727.406 804.787 748.036C790.225 728.423 782.714 703.53 785.419 676.913Z" fill="#040000"/>
+        <path opacity="0.1" d="M637.15 832.562C472.525 832.562 327.114 751.211 239.141 626.848C234.917 782.664 325.942 930.503 479.672 996.766C680.884 1083.5 916.631 999.163 1003.36 797.95C1027.22 742.608 1037.2 684.28 1035.06 626.983C947.08 751.269 801.716 832.562 637.15 832.562Z" fill="#040000"/>
+        </g>
+        <defs>
+        <radialGradient id="paint0_radial_2_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(639 636) rotate(90) scale(636 639)">
+        <stop stop-color="white" stop-opacity="0.25"/>
+        <stop offset="1" stop-color="white" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="clip0_2_2">
+        <rect width="800" height="800" fill="white" transform="translate(239 236)"/>
+        </clipPath>
+        </defs>
+      </svg>
     </g>
 
-    <!-- Houses -->
-    <g class="city-houses">
-        <!-- House 1 -->
-        <g class="house" transform="translate(0, 180)">
-            <rect x="0" y="0" width="100" height="120" fill="url(#wallGradient1)" /> <!-- Walls -->
-            <rect x="0" y="0" width="100" height="10" fill="#6d6d6d" /> <!-- Flat Roof -->
-            <rect x="35" y="70" width="30" height="50" fill="#603e2e" rx="5" /> <!-- Door -->
-            <rect x="10" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 1 -->
-            <rect x="65" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 2 -->
-        </g>
 
-        <!-- House 2 -->
-        <g class="house" transform="translate(100, 180)">
-            <rect x="0" y="0" width="100" height="120" fill="url(#wallGradient2)" /> <!-- Walls -->
-            <rect x="0" y="0" width="100" height="10" fill="#6d6d6d" /> <!-- Flat Roof -->
-            <rect x="40" y="70" width="20" height="50" fill="#603e2e" rx="5" /> <!-- Door -->
-            <rect x="10" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 1 -->
-            <rect x="65" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 2 -->
-        </g>
+      ${this.renderScene("#DDDDDD", "#EEEEEE", "#FFFFFF", "#2b1b14", "#4a2f23", "#57392b", "#826457", "#23471e", "#2d5a27", "#4CAF50", "#81C784")}
+              <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
 
-        <!-- House 3 -->
-        <g class="house" transform="translate(200, 180)">
-            <rect x="0" y="0" width="100" height="120" fill="url(#wallGradient3)" /> <!-- Walls -->
-            <rect x="0" y="0" width="100" height="10" fill="#6d6d6d" /> <!-- Flat Roof -->
-            <rect x="35" y="70" width="30" height="50" fill="#603e2e" rx="5" /> <!-- Door -->
-            <rect x="10" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 1 -->
-            <rect x="65" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 2 -->
-        </g>
+      <g class="snow-container">
+          ${this.renderSnowflakes()}
+      </g>
 
-        <!-- House 4 -->
-        <g class="house" transform="translate(300, 180)">
-            <rect x="0" y="0" width="100" height="120" fill="#ffcccb" /> <!-- Walls -->
-            <rect x="0" y="0" width="100" height="10" fill="#6d6d6d" /> <!-- Flat Roof -->
-            <rect x="35" y="70" width="30" height="50" fill="#603e2e" rx="5" /> <!-- Door -->
-            <rect x="10" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 1 -->
-            <rect x="65" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 2 -->
-        </g>
+      <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${0.4}" />
 
-        <!-- House 5 -->
-        <g class="house" transform="translate(400, 180)">
-            <rect x="0" y="0" width="100" height="120" fill="#ffffcc" /> <!-- Walls -->
-            <rect x="0" y="0" width="100" height="10" fill="#6d6d6d" /> <!-- Flat Roof -->
-            <rect x="35" y="70" width="30" height="50" fill="#603e2e" rx="5" /> <!-- Door -->
-            <rect x="10" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 1 -->
-            <rect x="65" y="20" width="25" height="25" fill="url(#windowGradient)" /> <!-- Window 2 -->
-        </g>
     </g>
-
-    <!-- Street -->
-    <rect x="0" y="300" width="100%" height="100" fill="#333" />
-    <line x1="0" y1="350" x2="500" y2="350" stroke="#fff" stroke-width="4" stroke-dasharray="20 10" />
-      `,
-
+  `,
 
       city: `
       <defs>
@@ -610,7 +582,19 @@ class Card {
   `;
   }
 
-  renderScene() {
+  renderScene(
+    groundColor1,
+    groundColor2,
+    groundColor3,
+    treeTrunkColor1,
+    treeTrunkColor2,
+    treeTrunkColor3,
+    treeTrunkColor4,
+    treeLeavesColor1,
+    treeLeavesColor2,
+    treeLeavesColor3,
+    treeLeavesColor4,
+  ) {
     return `
         <g class="dirt-container">
           ${[0, this.width]
@@ -625,7 +609,7 @@ class Card {
                        })
                        .join(" ")} 
                      L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#3E2723" class="${"layer-3"}"/>
+                  fill="${groundColor1}" class="${"layer-3"}"/>
           `,
             )
             .join("")}
@@ -637,8 +621,8 @@ class Card {
               { length: 50 },
               (_, i) => `
               <g transform="translate(${(i * this.width) / 15}, ${this.height * 0.64})">
-                <polygon points="0,0 15,-20 30,0" fill="#23471e" class="tree tree-very-small"/>
-                <rect x="13" y="0" width="3" height="5" fill="#2b1b14" class="trunk"/>
+                <polygon points="0,0 15,-20 30,0" fill="${treeLeavesColor1}" class="tree tree-very-small"/>
+                <rect x="13" y="0" width="3" height="5" fill="${treeTrunkColor1}" class="trunk"/>
               </g>
             `,
             ).join("")}
@@ -650,14 +634,14 @@ class Card {
               { length: 50 },
               (_, i) => `
               <g transform="translate(${i * (this.width / 12)}, ${this.height * 0.68})">
-                <polygon points="0,0 20,-30 40,0" fill="#2d5a27" class="tree tree-small"/>
-                <rect x="18" y="0" width="4" height="10" fill="#4a2f23" class="trunk"/>
+                <polygon points="0,0 20,-30 40,0" fill="${treeLeavesColor2}" class="tree tree-small"/>
+                <rect x="18" y="0" width="4" height="10" fill="${treeTrunkColor2}" class="trunk"/>
               </g>
             `,
             ).join("")}
           </g>
 
-                          <g class="dirt-container">
+          <g class="dirt-container">
           ${[0, this.width]
             .map(
               (offset) => `
@@ -670,7 +654,7 @@ class Card {
                        })
                        .join(" ")} 
                      L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#5D4037" class="${"layer-2"}"/>
+                  fill="${groundColor2}" class="${"layer-2"}"/>
           `,
             )
             .join("")}
@@ -681,15 +665,15 @@ class Card {
               { length: 30 },
               (_, i) => `
               <g transform="translate(${i * (this.width / 10)}, ${this.height * 0.75})">
-                <polygon points="0,0 30,-50 60,0" fill="#4CAF50" class="tree tree-medium"/>
-                <rect x="25" y="0" width="7" height="10" fill="#57392b" class="trunk"/>
+                <polygon points="0,0 30,-50 60,0" fill="${treeLeavesColor3}" class="tree tree-medium"/>
+                <rect x="25" y="0" width="7" height="10" fill="${treeTrunkColor3}" class="trunk"/>
               </g>
             `,
             ).join("")}
           </g>
 
 
-                <g class="dirt-container">
+          <g class="dirt-container">
           ${[0, this.width]
             .map(
               (offset) => `
@@ -702,7 +686,7 @@ class Card {
                        })
                        .join(" ")} 
                      L${offset + this.width},${this.height} L${offset},${this.height} Z"
-                  fill="#6D4C41" class="${"layer-1"}"/>
+                  fill="${groundColor3}" class="${"layer-1"}"/>
           `,
             )
             .join("")}
@@ -713,8 +697,8 @@ class Card {
               { length: 10 },
               (_, i) => `
               <g transform="translate(${i * (this.width / 5)}, ${this.height * 0.8})">
-                <polygon points="0,0 40,-70 80,0" fill="#81C784" class="tree tree-large"/>
-                <rect x="35" y="0" width="10" height="10" fill="#826457" class="trunk"/>
+                <polygon points="0,0 40,-70 80,0" fill="${treeLeavesColor4}" class="tree tree-large"/>
+                <rect x="35" y="0" width="10" height="10" fill="${treeTrunkColor4}" class="trunk"/>
               </g>
             `,
             ).join("")}

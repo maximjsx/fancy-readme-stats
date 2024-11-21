@@ -34,6 +34,13 @@ export const themes = {
     bg_color: "ffffff",
     border_color: "ffffff",
   },
+  forest_winter: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "ffffff",
+    border_color: "ffffff",
+  },
 
 };
 
