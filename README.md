@@ -49,7 +49,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 
 ### Preview:
 [![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
 [![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&email=ceo@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
 [![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest_winter&email=ceo@nextfight.net&description=forest%5Fwinter&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
 [![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&email=ceo@nextfight.net&description=rain&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
