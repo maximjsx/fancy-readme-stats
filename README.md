@@ -71,7 +71,7 @@ There are also other cards than the ones above.
 <br><br>
 
 <div align="center">
-    <h2>Community & support</h2>
+    <h2>Community & Support</h2>
     <a href="https://discord.gg/2UTkYj26B4">
         <img src="https://invidget.switchblade.xyz/2UTkYj26B4" alt="Discord Banner">
     </a>
