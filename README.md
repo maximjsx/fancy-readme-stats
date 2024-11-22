@@ -68,35 +68,14 @@ There are also other cards than the ones above.
   <img align="center" src="https://fancy-readme-stats.vercel.app/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true&update=1" />
 </a>
 
-### Top Langs
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=2" />
-</a><br>
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut&update=2" />
-</a><br>
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=normal&update=2" />
-</a><br>
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=pie&update=2" />
-</a><br>
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/top-langs/?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=donut-vertical&update=2" />
-</a>
+<br><br>
 
-### Wakatime
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&layout=compact&update=1" />
-</a>
+<div align="center">
+    <h2>Community & support</h2>
+    <a href="https://discord.gg/2UTkYj26B4">
+        <img src="https://invidget.switchblade.xyz/2UTkYj26B4" alt="Discord Banner">
+    </a>
+    <h2>Contributing</h2>
+    <p>Contributions are welcome!</p>
+</div>
 
-
-<br>
-
-<a href="https://github.com/max1mde/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/wakatime?username=max1mde&theme=snow&dark_bg=7&show_icons=true&update=1" />
-</a>
-
-
-## Contributing
-Contributions are welcome!
