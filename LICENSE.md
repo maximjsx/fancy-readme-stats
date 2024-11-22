@@ -1,4 +1,4 @@
-## JeTyKe License v3.0  
+## Fancy Readme Stats - License v3.0  
 
 <sup><b>This License in Simple Terms</b></sup><br>
 <sup>You may use, modify, and distribute the software for personal, non-commercial purposes with proper attribution. Compiled versions cannot be distributed, and the software is provided "as-is" with no warranties. The [original parts of the software](https://github.com/anuraghazra/github-readme-stats) remain under the MIT License.</sup>
