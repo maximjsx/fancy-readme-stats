@@ -1,9 +1,9 @@
-**JeTyKe License v2.1**
+**JeTyKe License v2.2**
 
 Original Code Base - Copyright (c) 2020 [Anurag Hazra](https://github.com/anuraghazra) (MIT License)  
 Modifications - Copyright (c) 2024 [Maxim](https://github.com/max1mde)
 
-**DATE (Modified)**: 11/17/2024  
+**DATE (Modified)**: 11/22/2024  
 **AUTHOR**: [Maxim](https://github.com/max1mde)  
 
 **1. DEFINITIONS**
