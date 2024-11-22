@@ -1,7 +1,7 @@
 ## Fancy Readme Stats - License v3.0  
 
 <sup><b>This License in Simple Terms</b></sup><br>
-<sup>You may use, modify, and distribute the software for personal, non-commercial purposes with proper attribution. Compiled versions cannot be distributed, and the software is provided "as-is" with no warranties. The [original parts of the software](https://github.com/anuraghazra/github-readme-stats) remain under the [MIT License](https://github.com/anuraghazra/github-readme-stats/blob/master/LICENSE).</sup>
+<sup>You may use, modify, and distribute the software for personal, non-commercial purposes with proper attribution. The software is provided "as-is" with no warranties. The [original parts of the software](https://github.com/anuraghazra/github-readme-stats) remain under the [MIT License](https://github.com/anuraghazra/github-readme-stats/blob/master/LICENSE).</sup>
 
 Original Code Base - Copyright (c) 2020 [Anurag Hazra](https://github.com/anuraghazra) (MIT License)  
 Modifications - Copyright (c) 2024 [Maxim](https://github.com/max1mde)  
@@ -32,8 +32,7 @@ Modifications - Copyright (c) 2024 [Maxim](https://github.com/max1mde)
 
    - **3.1 ATTRIBUTION**: LICENSEES must include a clear acknowledgment of the AUTHOR's contributions in any public use, modification, or redistribution of the MODIFICATIONS. This acknowledgment must include a link to the project page: [https://github.com/max1mde/fancy-readme-stats](https://github.com/max1mde/fancy-readme-stats).  
    - **3.2 NON-COMMERCIAL USE ONLY**: The MODIFICATIONS may not be sold, sublicensed, or otherwise used for commercial purposes without prior written consent from the AUTHOR.  
-   - **3.3 NO DISTRIBUTION OF EXECUTABLES**: LICENSEES may not distribute compiled or executable versions of the MODIFICATIONS. The source code of the MODIFICATIONS may be distributed only if this license is included and the MIT License requirements are met.  
-   - **3.4 NO CLAIM OF OWNERSHIP**: LICENSEES must not claim authorship of the MODIFICATIONS or misrepresent their origin.  
+   - **3.3 NO CLAIM OF OWNERSHIP**: LICENSEES must not claim authorship of the MODIFICATIONS or misrepresent their origin.  
 
 ---
 
