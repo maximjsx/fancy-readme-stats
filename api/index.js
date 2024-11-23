@@ -21,6 +21,7 @@ export default async (req, res) => {
     bg_color,
     theme,
     email,
+    footer,
     exclude_repo,
     custom_title,
     locale,
@@ -28,6 +29,7 @@ export default async (req, res) => {
     border_radius,
     number_format,
     hide_border,
+    hide_title,
     dark_bg,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
@@ -74,8 +76,10 @@ export default async (req, res) => {
         card_width: 10,
         include_all_commits: parseBoolean(include_all_commits),
         text_bold: parseBoolean(text_bold),
+        hide_title: parseBoolean(hide_title),
         theme,
         email,
+        footer,
         title_text: title,
         description_text: description,
         custom_title,

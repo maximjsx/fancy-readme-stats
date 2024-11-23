@@ -157,7 +157,7 @@ const renderStatsCard = (stats, options = {}) => {
     show_icons = false,
     hide_border = false,
     card_width,
-    hide_rank = false,
+    hide_title = false,
     include_all_commits = false,
     line_height = 25,
     title_color,
@@ -168,7 +168,6 @@ const renderStatsCard = (stats, options = {}) => {
     bg_color,
     theme = "beach",
     dark_bg = 1,
-    custom_title,
     border_radius,
     border_color,
     number_format = "short",
@@ -177,6 +176,7 @@ const renderStatsCard = (stats, options = {}) => {
     title_text,
     description_text,
     email,
+    footer,
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -192,7 +192,6 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
-  
   const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
     ? ""
     : "s";
@@ -200,7 +199,6 @@ const renderStatsCard = (stats, options = {}) => {
     locale,
     translations: statCardLocales({ name, apostrophe }),
   });
-
 
   const STATS = {
     stars: {
@@ -288,17 +286,13 @@ const renderStatsCard = (stats, options = {}) => {
       }),
     );
 
-  if (statItemsLeft.length === 0 && statItemsRight.length === 0 && hide_rank) {
-    throw new CustomError(
-      "Could not render stats card.",
-      "Either stats or rank are required.",
-    );
-  }
-
-  let height = Math.max(
+  /*let height = Math.max(
     45 + (statItemsLeft.length + statItemsRight.length + 1) * lheight,
-    hide_rank ? 0 : statItemsLeft.length || statItemsRight.length ? 150 : 180,
-  );
+    statItemsLeft.length || statItemsRight.length ? 150 : 180,
+  );*/
+
+  //the height of the card
+  let height = 230;
 
   const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
@@ -310,40 +304,23 @@ const renderStatsCard = (stats, options = {}) => {
     progress,
   });
 
-  const calculateTextWidth = () => {
-    return measureText(custom_title ? custom_title : "Stats");
-  };
-
   const iconWidth =
     show_icons && (statItemsLeft.length || statItemsRight.length) ? 16 + 1 : 0;
   const minLeftCardWidth =
-    (hide_rank
-      ? clampValue(50 + calculateTextWidth() * 2, CARD_LEFT_MIN_WIDTH, Infinity)
-      : statItemsLeft.length
-        ? RANK_CARD_LEFT_MIN_WIDTH
-        : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+    (statItemsLeft.length
+      ? RANK_CARD_LEFT_MIN_WIDTH
+      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
   const defaultLeftCardWidth =
-    (hide_rank
-      ? CARD_DEFAULT_WIDTH
-      : statItemsLeft.length
-        ? RANK_CARD_DEFAULT_WIDTH
-        : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+    (statItemsLeft.length
+      ? RANK_CARD_DEFAULT_WIDTH
+      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
   const minRightCardWidth =
-    (hide_rank
-      ? clampValue(
-          50 + calculateTextWidth() * 2,
-          CARD_RIGHT_MIN_WIDTH,
-          Infinity,
-        )
-      : statItemsRight.length
-        ? CARD_RIGHT_MIN_WIDTH
-        : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+    (statItemsRight.length ? CARD_RIGHT_MIN_WIDTH : RANK_ONLY_CARD_MIN_WIDTH) +
+    iconWidth;
   const defaultRightCardWidth =
-    (hide_rank
+    (statItemsRight.length
       ? CARD_RIGHT_DEFAULT_WIDTH
-      : statItemsRight.length
-        ? CARD_RIGHT_DEFAULT_WIDTH
-        : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
   let leftWidth = card_width
     ? isNaN(card_width)
       ? defaultLeftCardWidth
@@ -363,7 +340,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   const cardWidth = leftWidth + rightWidth;
   const card = new Card({
-    title: custom_title,
+    title: "",
     width: cardWidth,
     height,
     border_radius,
@@ -411,7 +388,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="white"
   >
-    ${title_text ? title_text : name}
+    ${hide_title ? "" : title_text ? title_text : name}
   </text>
 `;
 
@@ -441,7 +418,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="white"
   >
-    ${email ? email : ""}
+    ${footer ? footer : email ? email : ""}
   </text>
 `;
 
