@@ -13,12 +13,10 @@ import {
 import { statCardLocales } from "../translations.js";
 import { I18n } from "../common/I18n.js";
 
-const RANK_CARD_LEFT_MIN_WIDTH = 756;
-const RANK_CARD_DEFAULT_WIDTH = 810;
-const CARD_RIGHT_MIN_WIDTH = 250;
-const CARD_RIGHT_DEFAULT_WIDTH = 250;
-const RANK_ONLY_CARD_MIN_WIDTH = 290;
-const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
+const RANK_CARD_LEFT_MIN_WIDTH = 756 + 17;
+const RANK_CARD_DEFAULT_WIDTH = 810 + 17;
+const CARD_RIGHT_MIN_WIDTH = 250 + 17;
+const CARD_RIGHT_DEFAULT_WIDTH = 250 + 17;
 
 const createTextNode = ({
   icon,
@@ -304,10 +302,10 @@ const renderStatsCard = (stats, options = {}) => {
     progress,
   });
 
-  const minLeftCardWidth = RANK_CARD_LEFT_MIN_WIDTH + 17;
-  const defaultLeftCardWidth = RANK_CARD_DEFAULT_WIDTH + 17;
-  const minRightCardWidth = CARD_RIGHT_MIN_WIDTH + 17;
-  const defaultRightCardWidth = CARD_RIGHT_DEFAULT_WIDTH + 17;
+  const minLeftCardWidth = RANK_CARD_LEFT_MIN_WIDTH;
+  const defaultLeftCardWidth = RANK_CARD_DEFAULT_WIDTH;
+  const minRightCardWidth = CARD_RIGHT_MIN_WIDTH;
+  const defaultRightCardWidth = CARD_RIGHT_DEFAULT_WIDTH;
 
   let leftWidth = card_width
     ? isNaN(card_width)
