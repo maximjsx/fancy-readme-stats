@@ -60,7 +60,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 |-----------|------|-------------|
 | `height` | `number` | Sets the height of the card (`230` is the default and `170` the min value). |
 | `footer` | `string` | Sets the bottom text (Same as the legacy `email` parameter) |
-| `hide` | `string[]` | Hides specified items. Available values: `stars`, `commits`, `prs`, `issues`, `contribs` |
+| `hide` | `string[]` | Hides specified items. Available values: `stars`, `commits`, `prs`, `issues`, `contribs`, `prs_merged` |
 | `show_icons` | `boolean` | Shows icons next to stats |
 | `hide_title` | `boolean` | Hides the title/name |
 | `include_all_commits` | `boolean` | Count total commits instead of just current year |
