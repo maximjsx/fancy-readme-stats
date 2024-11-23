@@ -28,6 +28,7 @@ export type StatCardOptions = CommonOptions & {
   title_text: string;
   email: string; // Deprecated
   footer: string;
+  height: number;
   description_text: string;
   layout: "wide" | "normal";
 };

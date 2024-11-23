@@ -166,6 +166,7 @@ const renderStatsCard = (stats, options = {}) => {
     text_color,
     text_bold = true,
     bg_color,
+    custom_height = 230,
     theme = "beach",
     dark_bg = 1,
     border_radius,
@@ -292,7 +293,7 @@ const renderStatsCard = (stats, options = {}) => {
   );*/
 
   //the height of the bottom part card
-  let height = 170;
+  let height = custom_height < 170 ? 170 : custom_height;
 
   const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
