@@ -68,6 +68,7 @@ export default async (req, res) => {
 
     return res.send(
       renderStatsCard(stats, {
+        hide: parseArray(hide),
         show_icons: parseBoolean(show_icons),
         hide_border: parseBoolean(hide_border),
         card_width: 10,
