@@ -31,7 +31,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 | =         | `%3D`                      |
 | _         | `%5F`                      |
 
-### Parameters
+### Global Parameters
 
 | Parameter       | Type      | Description                                                        |
 |-----------------|-----------|--------------------------------------------------------------------|
@@ -48,15 +48,34 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 - snow
 
 ### Preview:
-[![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&footer=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&footer=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
-[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&footer=ceo@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest_winter&footer=ceo@nextfight.net&description=forest%5Fwinter&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
-[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&footer=ceo@nextfight.net&description=rain&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=snow&footer=ceo@nextfight.net&description=snow&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&description=beach&title=Theme&show_icons=true&include_all_commits=false&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&update=4)](https://github.com/max1mde/fancy-readme-stats)
+[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=city&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
+[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest_winter&footer=ceo@nextfight.net&description=forest%5Fwinter&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
+[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&description=rain&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=snow&description=snow&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+
+### Stats card Parameters
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `height` | `number` | Sets the height of the card (`230` is the default and `170` the min value). |
+| `footer` | `string` | Sets the bottom text (Same as the legacy `email` parameter) |
+| `hide` | `string[]` | Hides specified items. Available values: `stars`, `commits`, `prs`, `issues`, `contribs`, `prs_merged` |
+| `show_icons` | `boolean` | Shows icons next to stats |
+| `hide_title` | `boolean` | Hides the title/name |
+| `include_all_commits` | `boolean` | Count total commits instead of just current year |
+| `line_height` | `number\|string` | Sets the line height between text |
+| `title` | `string` | Sets a custom title |
+| `disable_animations` | `boolean` | Disables all animations in the card |
+| `number_format` | `string` | Choose between `short` (1.2k) or `long` (1234) number formatting |
+| `text_bold` | `boolean` | Makes text bold (`true` by default) |
+| `description` | `string` | Adds a description text below the title |
+| `layout` (FUTURE) | `"wide"\|"normal"` | Changes the layout of the card |
+| `exclude_repo` | `string` | Exclude repositories (comma-separated) - Example: `repo1,repo2,repo3` 
+
 
 # Cards
-There are also other cards than the ones above.
+There are also other cards than the stats card above.
 
 ### Repository
 <a href="https://github.com/max1mde/fancy-readme-stats">
