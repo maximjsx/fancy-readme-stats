@@ -5,7 +5,6 @@ export type CommonOptions = {
   title_color: string;
   icon_color: string;
   text_color: string;
-  bg_color: string;
   theme: ThemeNames;
   dark_bg: number;
   border_radius: number;
@@ -15,9 +14,9 @@ export type CommonOptions = {
 };
 
 export type StatCardOptions = CommonOptions & {
+  hide: string[];
   show_icons: boolean;
   hide_title: boolean;
-  card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
@@ -26,10 +25,11 @@ export type StatCardOptions = CommonOptions & {
   number_format: string;
   ring_color: string;
   text_bold: boolean;
-  rank_icon: RankIcon;
   title_text: string;
-  email: string;
+  email: string; // Deprecated
+  footer: string;
   description_text: string;
+  layout: "wide" | "normal";
 };
 
 export type RepoCardOptions = CommonOptions & {

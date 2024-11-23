@@ -12,6 +12,7 @@ import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 export default async (req, res) => {
   const {
     username,
+    hide,
     title,
     description,
     show_icons,
@@ -22,6 +23,8 @@ export default async (req, res) => {
     email,
     exclude_repo,
     custom_title,
+    locale,
+    disable_animations,
     border_radius,
     number_format,
     hide_border,
@@ -77,6 +80,8 @@ export default async (req, res) => {
         custom_title,
         border_radius,
         number_format,
+        locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
         dark_bg,
       }),
     );

@@ -10,6 +10,9 @@ import {
   measureText,
 } from "../common/utils.js";
 
+import { statCardLocales } from "../translations.js";
+import { I18n } from "../common/I18n.js";
+
 const CARD_LEFT_MIN_WIDTH = 250;
 const CARD_DEFAULT_WIDTH = 250;
 const RANK_CARD_LEFT_MIN_WIDTH = 756;
@@ -169,8 +172,8 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     border_color,
     number_format = "short",
+    locale,
     disable_animations = false,
-    rank_icon = "default",
     title_text,
     description_text,
     email,
@@ -189,35 +192,46 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
-  // Meta data for creating text nodes
+  
+  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+    ? ""
+    : "s";
+  const i18n = new I18n({
+    locale,
+    translations: statCardLocales({ name, apostrophe }),
+  });
+
+
   const STATS = {
     stars: {
       icon: icons.star,
-      label: "Total Stars",
+      label: i18n.t("statcard.totalstars"),
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `Commits${include_all_commits ? "" : ` (${new Date().getFullYear()})`}`,
+      label: `${i18n.t("statcard.commits")}${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
       value: totalCommits,
       id: "commits",
     },
     prs: {
       icon: icons.prs,
-      label: "Pull Requests",
+      label: i18n.t("statcard.prs"),
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: "Issues",
+      label: i18n.t("statcard.issues"),
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: "Contributed to",
+      label: i18n.t("statcard.contribs"),
       value: contributedTo,
       id: "contribs",
     },
@@ -225,7 +239,7 @@ const renderStatsCard = (stats, options = {}) => {
 
   STATS.prs_merged = {
     icon: icons.prs_merged,
-    label: "PRs Merged",
+    label: i18n.t("statcard.prs-merged"),
     value: totalPRsMerged,
     id: "prs_merged",
   };
@@ -364,17 +378,6 @@ const renderStatsCard = (stats, options = {}) => {
   if (disable_animations) {
     card.disableAnimations();
   }
-
-  const rankCircle = hide_rank
-    ? ""
-    : `<g data-testid="rank-circle"
-          transform="translate(${cardWidth / 2}, ${height / 2 - 50})">
-        <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle" cx="-10" cy="8" r="40" />
-        <g class="rank-text">
-          ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
-        </g>
-      </g>`;
 
   const labelsLeft = Object.keys(STATS)
     .filter(
