@@ -230,7 +230,8 @@ const renderStatsCard = (stats, options = {}) => {
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
+      label:
+        i18n.t("statcard.contribs") + " (" + new Date().getFullYear() + ")",
       value: contributedTo,
       id: "contribs",
     },
