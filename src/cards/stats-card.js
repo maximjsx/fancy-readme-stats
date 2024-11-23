@@ -13,8 +13,6 @@ import {
 import { statCardLocales } from "../translations.js";
 import { I18n } from "../common/I18n.js";
 
-const CARD_LEFT_MIN_WIDTH = 250;
-const CARD_DEFAULT_WIDTH = 250;
 const RANK_CARD_LEFT_MIN_WIDTH = 756;
 const RANK_CARD_DEFAULT_WIDTH = 810;
 const CARD_RIGHT_MIN_WIDTH = 250;
@@ -306,23 +304,11 @@ const renderStatsCard = (stats, options = {}) => {
     progress,
   });
 
-  const iconWidth =
-    show_icons && (statItemsLeft.length || statItemsRight.length) ? 16 + 1 : 0;
-  const minLeftCardWidth =
-    (statItemsLeft.length
-      ? RANK_CARD_LEFT_MIN_WIDTH
-      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
-  const defaultLeftCardWidth =
-    (statItemsLeft.length
-      ? RANK_CARD_DEFAULT_WIDTH
-      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
-  const minRightCardWidth =
-    (statItemsRight.length ? CARD_RIGHT_MIN_WIDTH : RANK_ONLY_CARD_MIN_WIDTH) +
-    iconWidth;
-  const defaultRightCardWidth =
-    (statItemsRight.length
-      ? CARD_RIGHT_DEFAULT_WIDTH
-      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+  const minLeftCardWidth = RANK_CARD_LEFT_MIN_WIDTH + 17;
+  const defaultLeftCardWidth = RANK_CARD_DEFAULT_WIDTH + 17;
+  const minRightCardWidth = CARD_RIGHT_MIN_WIDTH + 17;
+  const defaultRightCardWidth = CARD_RIGHT_DEFAULT_WIDTH + 17;
+
   let leftWidth = card_width
     ? isNaN(card_width)
       ? defaultLeftCardWidth
@@ -333,6 +319,7 @@ const renderStatsCard = (stats, options = {}) => {
       ? defaultRightCardWidth
       : card_width
     : defaultRightCardWidth;
+
   if (leftWidth < minLeftCardWidth) {
     leftWidth = minLeftCardWidth;
   }
