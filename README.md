@@ -1,6 +1,6 @@
 <div align="center"><sup>Based on <a href="https://github.com/anuraghazra/github-readme-stats">anuraghazra/github-readme-stats</a></sup></div>
 
-[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=3&theme=forest_winter&email=6%20Animated%20Backgrounds&show_icons=true&title=Fancy%20Readme%20Cards%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text%20and%20more%2E&include_all_commits=true&show_icons=true&update=2)](https://github.com/max1mde/fancy-readme-stats)
+[![Example card](https://fancy-readme-stats.vercel.app/api?username=max1mde&dark_bg=3&theme=forest_winter&footer=6%20Animated%20Backgrounds&show_icons=true&title=Fancy%20Readme%20Cards%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text%20and%20more%2E&include_all_commits=true&show_icons=true&update=2)](https://github.com/max1mde/fancy-readme-stats)
 
 **What is different in this fork?**
 - 6 Animated parallax backgrounds for every card
@@ -13,7 +13,7 @@
 To use this card in your GitHub profile README, add the following Markdown snippet to your README file:
 
 ```markdown
-[![Fancy Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&email=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
+[![Fancy Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&footer=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/max1mde/fancy-readme-stats)
 ```
 
 ### Special characters
@@ -48,12 +48,12 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 - snow
 
 ### Preview:
-[![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&email=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&email=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
-[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&email=ceo@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest_winter&email=ceo@nextfight.net&description=forest%5Fwinter&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
-[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&email=ceo@nextfight.net&description=rain&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
-[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=snow&email=ceo@nextfight.net&description=snow&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&footer=ceo@nextfight.net&description=beach&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=city&footer=ceo@nextfight.net&description=city&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
+[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest&footer=ceo@nextfight.net&description=forest&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=forest_winter&footer=ceo@nextfight.net&description=forest%5Fwinter&title=Theme&show_icons=true&include_all_commits=false&update=5)](https://github.com/max1mde/fancy-readme-stats)
+[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=rain&footer=ceo@nextfight.net&description=rain&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
+[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=snow&footer=ceo@nextfight.net&description=snow&title=Theme&show_icons=true&include_all_commits=false&update=3)](https://github.com/max1mde/fancy-readme-stats)
 
 # Cards
 There are also other cards than the ones above.
