@@ -4,7 +4,7 @@
 
 **What is different in this fork?**
 - 6 Animated parallax backgrounds for every card
-- Additional query parameters like `dark_bg` or `email` for the stats card
+- Additional query parameters like `dark_bg` or `footer` for the stats card
 - A full-width version of the stats card
 
 ### Leave a **star** ⭐ if you want me to make more themes<img src="https://github.com/user-attachments/assets/ae25e4b9-c97e-4fe9-bb24-72cd4eb5b99b" width="50">
