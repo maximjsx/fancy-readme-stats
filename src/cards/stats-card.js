@@ -13,10 +13,8 @@ import {
 import { statCardLocales } from "../translations.js";
 import { I18n } from "../common/I18n.js";
 
-const RANK_CARD_LEFT_MIN_WIDTH = 756 + 17;
-const RANK_CARD_DEFAULT_WIDTH = 810 + 17;
-const CARD_RIGHT_MIN_WIDTH = 250 + 17;
-const CARD_RIGHT_DEFAULT_WIDTH = 250 + 17;
+const CARD_LEFT_MIN_WIDTH = 740;
+const CARD_RIGHT_MIN_WIDTH = 267;
 
 const createTextNode = ({
   icon,
@@ -26,6 +24,7 @@ const createTextNode = ({
   unitSymbol,
   index,
   showIcons,
+  right,
   shiftValuePos,
   bold,
   number_format,
@@ -48,7 +47,7 @@ const createTextNode = ({
       <text class="stat ${bold ? " bold" : "not_bold"}" ${labelOffset} y="12.5">${label}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
-        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        x="${(right || showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
       >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
@@ -150,7 +149,7 @@ const renderStatsCard = (stats, options = {}) => {
   } = stats;
   const {
     hide = [],
-    show_icons = false,
+    show_icons = true,
     hide_border = false,
     card_width,
     hide_title = false,
@@ -257,6 +256,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
+        right: false,
         shiftValuePos: 50,
         bold: text_bold,
         number_format,
@@ -278,6 +278,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
+        right: true,
         shiftValuePos: 50,
         bold: text_bold,
         number_format,
@@ -302,21 +303,19 @@ const renderStatsCard = (stats, options = {}) => {
     progress,
   });
 
-  const minLeftCardWidth = RANK_CARD_LEFT_MIN_WIDTH;
-  const defaultLeftCardWidth = RANK_CARD_DEFAULT_WIDTH;
+  const minLeftCardWidth = CARD_LEFT_MIN_WIDTH;
   const minRightCardWidth = CARD_RIGHT_MIN_WIDTH;
-  const defaultRightCardWidth = CARD_RIGHT_DEFAULT_WIDTH;
 
   let leftWidth = card_width
     ? isNaN(card_width)
-      ? defaultLeftCardWidth
+      ? minRightCardWidth
       : card_width
-    : defaultLeftCardWidth;
+    : minRightCardWidth;
   let rightWidth = card_width
     ? isNaN(card_width)
-      ? defaultRightCardWidth
+      ? minRightCardWidth
       : card_width
-    : defaultRightCardWidth;
+    : minRightCardWidth;
 
   if (leftWidth < minLeftCardWidth) {
     leftWidth = minLeftCardWidth;
@@ -424,7 +423,7 @@ const renderStatsCard = (stats, options = {}) => {
         gap: lheight,
         direction: "column",
       }).join("")}
-      <g transform="translate(${leftWidth - 5}, 0)">
+      <g transform="translate(${leftWidth}, 0)">
         ${flexLayout({
           items: statItemsRight,
           gap: lheight,
