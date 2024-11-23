@@ -291,8 +291,8 @@ const renderStatsCard = (stats, options = {}) => {
     statItemsLeft.length || statItemsRight.length ? 150 : 180,
   );*/
 
-  //the height of the card
-  let height = 230;
+  //the height of the bottom part card
+  let height = 170;
 
   const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
@@ -411,7 +411,7 @@ const renderStatsCard = (stats, options = {}) => {
   <text
     class="title fadeInAnimation"
     x="${cardWidth / 2}"
-    y="150"
+    y="${height - 75}"
     text-anchor="middle"
     font-weight="600"
     font-size="13px"
