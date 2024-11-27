@@ -160,7 +160,6 @@ const renderStatsCard = (stats, options = {}) => {
     icon_color,
     text_color,
     text_bold = true,
-    bg_color,
     custom_height = 230,
     theme = "beach",
     dark_bg = 1,
@@ -177,12 +176,13 @@ const renderStatsCard = (stats, options = {}) => {
 
   const lheight = parseInt(String(line_height), 10);
 
+
+
   const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
       text_color,
       icon_color,
-      bg_color,
       border_color,
       ring_color,
       theme,
@@ -332,6 +332,13 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     theme: theme,
     dark_bg: dark_bg,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+      borderColor,
+    }
   });
 
   card.setHideBorder(hide_border);
