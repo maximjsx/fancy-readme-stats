@@ -147,13 +147,13 @@ const renderRepoCard = (repo, options = {}) => {
     watchers: {
       icon: icons.eye,
       label: i18n.t("repocard.watchers"),
-      value: watchers,
+      value: watchers || 0,
       id: "watchers",
     },
     issues: {
       icon: icons.issues,
       label: i18n.t("repocard.issues"),
-      value: openIssues,
+      value: openIssues || 0,
       id: "issues",
     },
   };
