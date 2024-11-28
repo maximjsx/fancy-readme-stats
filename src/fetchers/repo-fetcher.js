@@ -34,6 +34,12 @@ const fetcher = (variables, token) => {
           name
         }
         forkCount
+        watchers {
+          totalCount
+        }
+        issues(states: OPEN) {
+          totalCount
+        }
       }
       query getRepo($login: String!, $repo: String!) {
         user(login: $login) {
