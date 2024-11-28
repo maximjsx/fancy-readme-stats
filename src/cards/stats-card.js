@@ -176,8 +176,6 @@ const renderStatsCard = (stats, options = {}) => {
 
   const lheight = parseInt(String(line_height), 10);
 
-
-
   const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
@@ -338,7 +336,7 @@ const renderStatsCard = (stats, options = {}) => {
       iconColor,
       bgColor,
       borderColor,
-    }
+    },
   });
 
   card.setHideBorder(hide_border);
@@ -379,7 +377,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-weight="600"
     font-size="40px"
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
-    fill="white"
+    fill="${textColor}"
   >
     ${hide_title ? "" : title_text ? title_text : name}
   </text>
@@ -394,7 +392,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-weight="600"
     font-size="15px"
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
-    fill="white"
+    fill="${textColor}"
   >
     ${description_text ? description_text : ""}
   </text>
