@@ -70,7 +70,6 @@ const renderRepoCard = (repo, options = {}) => {
     title_color,
     icon_color,
     text_color,
-    bg_color,
     show_owner = false,
     theme = "beach",
     border_radius,
@@ -114,7 +113,6 @@ const renderRepoCard = (repo, options = {}) => {
     title_color,
     icon_color,
     text_color,
-    bg_color,
     border_color,
     theme,
   });
@@ -155,6 +153,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     theme: theme,
     dark_bg: dark_bg,
+    colors
   });
 
   card.setHideBorder(hide_border);
