@@ -40,6 +40,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 | `dark_bg`       | `number`  | Sets the background darkness level (e.g., `0` for light, `10` for pitch black). |
 | `border_radius` | `number`  | Adjust the border's corner roundness! Use `5` for slight rounding and `15` for a more rounded effect. |
 | `hide_border`   | `boolean` | Determines whether to hide the border (`true` to hide, `false` to show). |
+| `theme`   | `boolean` | Choose from one of the themes below |
 
 ### Themes
 - forest
@@ -47,7 +48,10 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 - beach
 - city
 - rain
+- red_rain
 - snow
+
+[Here is a list of **all** themes](/themes/index.js) also the not animated ones.
 
 ### Preview:
 [![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=max1mde&theme=beach&hide_border=true&description=beach&title=Theme&show_icons=true&include_all_commits=false&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&update=7)](https://github.com/max1mde/fancy-readme-stats)
