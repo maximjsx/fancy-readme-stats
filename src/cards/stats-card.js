@@ -396,8 +396,8 @@ const renderStatsCard = (stats, options = {}) => {
   >
     ${
       description_text
-        ? description_text
-            .split("%br%")
+        ? decodeURIComponent(description_text)
+            .split("\n")
             .map(
               (line, index) =>
                 `<tspan x="${cardWidth / 2}" ${index > 0 ? `dy="1.2em"` : ""}>${line}</tspan>`,
