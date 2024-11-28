@@ -30,6 +30,7 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 | <         | `%3C`                      |
 | =         | `%3D`                      |
 | _         | `%5F`                      |
+| New line  | `%br%`                     |
 
 ### Global Parameters
 
