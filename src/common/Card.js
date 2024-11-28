@@ -365,6 +365,32 @@ class Card {
       </g>
       
       `,
+
+      red_rain: `
+
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
+        </mask>
+      </defs>
+
+      <g class="parallax-background" mask="url(#${maskId})">
+        <defs>
+          <linearGradient id="rainGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#003e61"/>
+            <stop offset="100%" stop-color="#A13C5C"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#rainGradient)" class="sky"/>
+
+        <g class="rain-container">
+          ${this.renderRainDrops()}
+        </g>
+
+                <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+      
+      `,
       snow: `
       
  <defs>
