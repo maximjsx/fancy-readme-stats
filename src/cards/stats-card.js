@@ -394,7 +394,17 @@ const renderStatsCard = (stats, options = {}) => {
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
     fill="${textColor}"
   >
-    ${description_text ? description_text : ""}
+    ${
+      description_text
+        ? description_text
+            .split("%br%")
+            .map(
+              (line, index) =>
+                `<tspan x="${cardWidth / 2}" ${index > 0 ? `dy="1.2em"` : ""}>${line}</tspan>`,
+            )
+            .join("")
+        : ""
+    }
   </text>
 `;
 
