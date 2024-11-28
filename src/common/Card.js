@@ -108,9 +108,7 @@ class Card {
    * @returns {string} The rendered card gradient.
    */
   renderGradient() {
-    if (
-      typeof this.colors.bgColor !== "object" 
-    ) {
+    if (typeof this.colors.bgColor !== "object") {
       return "";
     }
 
@@ -234,6 +232,37 @@ class Card {
           ${this.renderSandLayer()}
         </g>
 
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
+      </g>
+    `,
+
+      autumn: `
+      <defs>
+        <mask id="${maskId}" x="0" y="0" width="${this.width}" height="99%">
+          <rect x="0" y="0" width="${this.width - 1}" height="99%" rx="${this.border_radius}" fill="white"/>
+        </mask>
+        <linearGradient id="autumnSkyGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D35400"/>
+          <stop offset="100%" stop-color="#7D6608"/>
+        </linearGradient>
+      </defs>
+
+      <g class="parallax-background" mask="url(#${maskId})">
+        <!-- Sky Layer with Gradient -->
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="url(#autumnSkyGradient)" class="sky"/>
+
+        <!-- Falling Leaves Layer -->
+        <g class="falling-leaves">
+          ${this.renderFallingLeaves()}
+        </g>
+
+        <!-- Forest Layers -->
+        ${this.renderAutumnForestLayers()}
+
+        <!-- Mist Overlay -->
+        <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#FFFFFF" opacity="0.1" class="mist"/>
+
+        <!-- Dark Overlay -->
         <rect x="0" y="0" width="${this.width}" height="${this.height}" fill="#000000" opacity="${this.dark_bg / 10}" />
       </g>
     `,
@@ -643,6 +672,78 @@ class Card {
   `;
   }
 
+  renderFallingLeaves() {
+    const leafColors = [
+      "#8B4513",
+      "#D2691E",
+      "#CD853F",
+      "#DEB887",
+      "#A0522D",
+      "#B8860B",
+    ];
+
+    return Array.from({ length: 300 }, () => {
+      const x = Math.random() * (this.width * 2);
+      const y = -50;
+      const size = Math.random() * 10 + 5;
+      const rotation = Math.random() * 360;
+      const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+      const fallDuration = Math.random() * 20 + 15;
+      const horizontalDrift = Math.random() * 100 - 50;
+      const depth = 0.6 + Math.random() * 0.4;
+
+      return `
+      <g class="leaf" style="animation: fallLeaf ${fallDuration}s linear infinite">
+        <polygon 
+          points="0,0 ${size / 2},${size} ${size},0" 
+          fill="${color}"
+          transform="translate(${x},${y}) rotate(${rotation}) translate(${horizontalDrift},0)"
+          class="falling-leaf"
+        />
+      </g>
+    `;
+    }).join("");
+  }
+
+  renderAutumnForestLayers() {
+    const treeColors = {
+      trunk: ["#5D4037", "#6D4C41", "#4E342E"],
+      leaves: ["#D35400", "#FF8C00", "#8B0000", "#B22222", "#A0522D"],
+    };
+
+    return [
+      { depth: 0.9, treeSize: 30, opacity: 0.3 },
+      { depth: 0.8, treeSize: 50, opacity: 0.5 },
+      { depth: 0.7, treeSize: 70, opacity: 0.7 },
+      { depth: 0.6, treeSize: 90, opacity: 0.9 },
+    ]
+      .map(
+        (layer) => `
+    <g class="forest-layer" style="opacity: ${layer.opacity}">
+      ${Array.from(
+        { length: 20 },
+        (_, i) => `
+        <g transform="translate(${i * (this.width / 20)}, ${this.height * layer.depth})">
+          <rect 
+            x="0" 
+            y="0" 
+            width="5" 
+            height="${layer.treeSize}" 
+            fill="${treeColors.trunk[Math.floor(Math.random() * treeColors.trunk.length)]}"
+          />
+          <polygon 
+            points="0,0 10,-${layer.treeSize} 20,0" 
+            fill="${treeColors.leaves[Math.floor(Math.random() * treeColors.leaves.length)]}"
+          />
+        </g>
+      `,
+      ).join("")}
+    </g>
+  `,
+      )
+      .join("");
+  }
+
   renderScene(
     groundColor1,
     groundColor2,
@@ -811,6 +912,34 @@ class Card {
 
   getAnimations() {
     return `
+
+
+  @keyframes fallLeaf {
+    0% { 
+      transform: translateY(-50px) rotate(0deg); 
+    }
+    100% { 
+      transform: translateY(${this.height + 100}px) rotate(720deg) translateX(${this.width * -1});
+    }
+  }
+
+  .forest-layer {
+    animation: move ${Math.random() * 20 + 10}s linear infinite;
+  }
+
+  .falling-leaves {
+    animation: fallLeavesLoop ${Math.random() * 10 + 30}s linear infinite;
+  }
+
+  @keyframes fallLeavesLoop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(${this.width * -1});
+    }
+  }
+
     @keyframes scaleInAnimation {
       from { transform: translate(-5px, 5px) scale(0); }
       to { transform: translate(-5px, 5px) scale(1); }
