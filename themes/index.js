@@ -469,7 +469,14 @@ export const themes = {
     bg_color: "transparent",
     border_color: "ffffff",
   },
-  desert: {
+  rain: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "transparent",
+    border_color: "ffffff",
+  },
+  snow: {
     title_color: "ffffff",
     icon_color: "ffffff",
     text_color: "ffffff",
