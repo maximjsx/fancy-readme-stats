@@ -70,6 +70,9 @@ const getStyles = ({ titleColor, textColor, iconColor, show_icons }) => {
     }
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
+    .stroke-path {
+        stroke: ${iconColor}; 
+    }
     .icon {
       fill: ${iconColor};
       display: ${show_icons ? "block" : "none"};
@@ -86,7 +89,7 @@ const renderRepoCard = (repo, options = {}) => {
     starCount,
     forkCount,
     watchers,
-    openIssues,
+    issues,
     isTemplate,
     isArchived,
   } = repo;
@@ -147,13 +150,13 @@ const renderRepoCard = (repo, options = {}) => {
     watchers: {
       icon: icons.eye,
       label: i18n.t("repocard.watchers"),
-      value: watchers || 0,
+      value: watchers.totalCount || 0,
       id: "watchers",
     },
     issues: {
       icon: icons.issues,
       label: i18n.t("repocard.issues"),
-      value: openIssues || 0,
+      value: issues.totalCount || 0,
       id: "issues",
     },
   };
