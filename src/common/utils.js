@@ -204,6 +204,7 @@ const isValidGradient = (colors) => {
  * @returns {string | string[]} The gradient or color.
  */
 const fallbackColor = (color, fallbackColor) => {
+  if(color === "transparent") return "transparent";
   let gradient = null;
 
   let colors = color ? color.split(",") : [];
@@ -268,7 +269,6 @@ const getCardColors = ({
   title_color,
   text_color,
   icon_color,
-  bg_color,
   border_color,
   ring_color,
   theme,
@@ -300,8 +300,10 @@ const getCardColors = ({
     text_color || selectedTheme.text_color,
     "#" + defaultTheme.text_color,
   );
+
+
   const bgColor = fallbackColor(
-    bg_color || selectedTheme.bg_color,
+    selectedTheme.bg_color,
     "#" + defaultTheme.bg_color,
   );
 
@@ -358,25 +360,6 @@ const UPSTREAM_API_ERRORS = [
  * @returns {string} The SVG markup.
  */
 const renderError = (message, secondaryMessage = "", options = {}) => {
-  const {
-    title_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme = "snow",
-  } = options;
-
-  // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
-    title_color,
-    text_color,
-    icon_color: "",
-    bg_color,
-    border_color,
-    ring_color: "",
-    theme,
-  });
-
   return `
     <svg width="${ERROR_CARD_LENGTH}"  height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="gray" xmlns="http://www.w3.org/2000/svg">
     <style>

@@ -6,6 +6,7 @@ class Card {
     height = 100,
     border_radius = 4.5,
     theme = "beach",
+    colors = {},
     title = "Stats",
     dark_bg = 1,
   }) {
@@ -15,6 +16,7 @@ class Card {
     this.border_radius = border_radius;
     this.title = title;
     this.css = "";
+    this.colors = colors;
     this.paddingX = 25;
     this.paddingY = 35;
     this.animations = true;
@@ -102,7 +104,40 @@ class Card {
     `;
   }
 
+  /**
+   * @returns {string} The rendered card gradient.
+   */
+  renderGradient() {
+    if (
+      typeof this.colors.bgColor !== "object" 
+    ) {
+      return "";
+    }
+
+    const gradients = this.colors.bgColor.slice(1);
+    return typeof this.colors.bgColor === "object"
+      ? `
+        <defs>
+          <linearGradient
+            id="gradient"
+            gradientTransform="rotate(${this.colors.bgColor[0]})"
+            gradientUnits="userSpaceOnUse"
+          >
+            ${gradients.map((grad, index) => {
+              let offset = (index * 100) / (gradients.length - 1);
+              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
+            })}
+          </linearGradient>
+        </defs>
+        `
+      : "";
+  }
+
   renderParallaxBackground() {
+    if (this.colors.bgColor !== "transparent") {
+      return "";
+    }
+
     const maskId = `mask-${Math.random().toString(36).substring(7)}`;
 
     const starGroups = Array.from({ length: 3 }, (_, i) => {
@@ -887,7 +922,7 @@ class Card {
 
           .header {
             font: 600 25px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: white;
+            fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
           @supports(-moz-appearance: auto) {
@@ -900,7 +935,9 @@ class Card {
           ${this.animations === false ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }` : ""}
         </style>
 
+        ${this.renderGradient()}
         ${this.renderParallaxBackground()}
+
         
         <rect
           data-testid="card-bg"
@@ -910,7 +947,11 @@ class Card {
           height="99%"
           stroke="white"
           width="${this.width - 1}"
-          fill="transparent"
+          fill="${
+            typeof this.colors.bgColor === "object"
+              ? "url(#gradient)"
+              : this.colors.bgColor
+          }"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
         />
 

@@ -48,7 +48,6 @@ const renderGistCard = (gistData, options = {}) => {
     title_color,
     icon_color,
     text_color,
-    bg_color,
     theme,
     border_radius,
     border_color,
@@ -63,7 +62,6 @@ const renderGistCard = (gistData, options = {}) => {
       title_color,
       icon_color,
       text_color,
-      bg_color,
       border_color,
       theme,
     });
@@ -122,7 +120,14 @@ const renderGistCard = (gistData, options = {}) => {
     height,
     border_radius,
     theme,
-    dark_bg
+    dark_bg,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+      borderColor,
+    },
   });
 
   card.setCSS(`

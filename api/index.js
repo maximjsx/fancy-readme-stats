@@ -18,7 +18,6 @@ export default async (req, res) => {
     show_icons,
     include_all_commits,
     text_bold,
-    bg_color,
     theme,
     email,
     footer,
@@ -40,7 +39,6 @@ export default async (req, res) => {
       renderError("Something went wrong", "This username is blacklisted", {
         title_color,
         text_color,
-        bg_color,
         border_color,
         theme,
       }),
@@ -93,6 +91,7 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
+    
     res.setHeader(
       "Cache-Control",
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
@@ -100,9 +99,7 @@ export default async (req, res) => {
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        theme,
-      }),
+      renderError(err.message, err.secondaryMessage, {}),
     );
   }
 };

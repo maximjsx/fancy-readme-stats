@@ -727,7 +727,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
     card_width,
     title_color,
     text_color,
-    bg_color,
     hide,
     hide_progress,
     theme,
@@ -765,7 +764,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const colors = getCardColors({
     title_color,
     text_color,
-    bg_color,
     border_color,
     theme,
   });
@@ -808,7 +806,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     height,
     border_radius,
     theme,
-    dark_bg
+    dark_bg,
+    colors
   });
 
   if (disable_animations) {

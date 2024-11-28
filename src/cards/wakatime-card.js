@@ -228,7 +228,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     title_color,
     icon_color,
     text_color,
-    bg_color,
     theme = "beach",
     dark_bg = 1,
     hide_progress,
@@ -270,7 +269,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       title_color,
       icon_color,
       text_color,
-      bg_color,
       border_color,
       theme,
     });
@@ -396,7 +394,14 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     height,
     border_radius,
     theme,
-    dark_bg
+    dark_bg,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+      borderColor,
+    }
   });
 
   if (disable_animations) {

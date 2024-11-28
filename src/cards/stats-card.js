@@ -160,7 +160,6 @@ const renderStatsCard = (stats, options = {}) => {
     icon_color,
     text_color,
     text_bold = true,
-    bg_color,
     custom_height = 230,
     theme = "beach",
     dark_bg = 1,
@@ -182,7 +181,6 @@ const renderStatsCard = (stats, options = {}) => {
       title_color,
       text_color,
       icon_color,
-      bg_color,
       border_color,
       ring_color,
       theme,
@@ -332,6 +330,13 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     theme: theme,
     dark_bg: dark_bg,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+      borderColor,
+    },
   });
 
   card.setHideBorder(hide_border);
@@ -372,7 +377,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-weight="600"
     font-size="40px"
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
-    fill="white"
+    fill="${textColor}"
   >
     ${hide_title ? "" : title_text ? title_text : name}
   </text>
@@ -387,7 +392,7 @@ const renderStatsCard = (stats, options = {}) => {
     font-weight="600"
     font-size="15px"
     font-family="'Segoe UI', Ubuntu, Sans-Serif"
-    fill="white"
+    fill="${textColor}"
   >
     ${description_text ? description_text : ""}
   </text>
