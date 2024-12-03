@@ -511,7 +511,7 @@ export const themes = {
     bg_color: "transparent",
     border_color: "ffffff",
   },
-  autumn: {
+  forest_autumn: {
     title_color: "ffffff",
     icon_color: "ffffff",
     text_color: "ffffff",
