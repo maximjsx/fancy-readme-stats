@@ -79,7 +79,6 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 | `number_format` | `string` | Choose between `short` (1.2k) or `long` (1234) number formatting |
 | `text_bold` | `boolean` | Makes text bold (`true` by default) |
 | `description` | `string` | Adds a description text below the title |
-| `layout` (FUTURE) | `"wide"\|"normal"` | Changes the layout of the card |
 | `exclude_repo` | `string` | Exclude repositories (comma-separated) - Example: `repo1,repo2,repo3` 
 
 
