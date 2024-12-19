@@ -11,6 +11,7 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
+import { trackUsername } from "../common/db.js";
 
 dotenv.config();
 
@@ -230,6 +231,8 @@ const fetchStats = async (
   if (!username) {
     throw new MissingParamError(["username"]);
   }
+
+  await trackUsername(username);
 
   const stats = {
     name: "",

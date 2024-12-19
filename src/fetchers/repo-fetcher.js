@@ -1,6 +1,7 @@
 // @ts-check
 import { retryer } from "../common/retryer.js";
 import { MissingParamError, request } from "../common/utils.js";
+import { trackUsername, trackRepository } from "../common/db.js";
 
 /**
  * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
@@ -85,6 +86,11 @@ const fetchRepo = async (username, reponame) => {
   if (!reponame) {
     throw new MissingParamError(["repo"], urlExample);
   }
+
+  await Promise.all([
+    trackUsername(username),
+    trackRepository(username, reponame)
+  ]);
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
 

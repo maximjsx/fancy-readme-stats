@@ -50,6 +50,7 @@
     "emoji-name-map": "^1.2.8",
     "express.js": "^1.0.0",
     "github-username-regex": "^1.0.0",
+    "mongodb": "^6.12.0",
     "upgrade": "^1.1.0",
     "word-wrap": "^1.2.5"
   },
