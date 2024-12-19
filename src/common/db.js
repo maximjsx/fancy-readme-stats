@@ -13,7 +13,7 @@ export async function connectToDatabase() {
   }
 
   if (failedConnections >= MAX_RETRIES) {
-    throw new Error("Maximum database connection retries exceeded");
+    return;
   }
 
   try {
