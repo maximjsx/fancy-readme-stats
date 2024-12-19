@@ -232,7 +232,11 @@ const fetchStats = async (
     throw new MissingParamError(["username"]);
   }
 
-  await trackUsername(username);
+  try {
+    trackUsername(username);
+  } catch (error) {
+    console.error("Failed to track username:", error);
+  }
 
   const stats = {
     name: "",

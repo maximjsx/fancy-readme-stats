@@ -87,10 +87,12 @@ const fetchRepo = async (username, reponame) => {
     throw new MissingParamError(["repo"], urlExample);
   }
 
-  await Promise.all([
-    trackUsername(username),
-    trackRepository(username, reponame)
-  ]);
+  try {
+    await trackUsername(username);
+    await trackRepository(username, reponame);
+  } catch (error) {
+    console.error("Failed to track username or repository:", error);
+  }
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
 
