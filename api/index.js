@@ -21,6 +21,7 @@ export default async (req, res) => {
     theme,
     email,
     footer,
+    cache_seconds,
     exclude_repo,
     locale,
     height,
@@ -45,6 +46,7 @@ export default async (req, res) => {
   }
 
   try {
+
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
@@ -52,11 +54,10 @@ export default async (req, res) => {
     );
 
     let cacheSeconds = clampValue(
-      parseInt(CONSTANTS.CARD_CACHE_SECONDS, 10),
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.TWELVE_HOURS,
       CONSTANTS.TWO_DAY,
     );
-
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
       : cacheSeconds;
@@ -65,6 +66,7 @@ export default async (req, res) => {
       "Cache-Control",
       `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
+
 
     return res.send(
       renderStatsCard(stats, {
@@ -89,15 +91,12 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    
     res.setHeader(
       "Cache-Control",
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
-    return res.send(
-      renderError(err.message, err.secondaryMessage, {}),
-    );
+    return res.send(renderError(err.message, err.secondaryMessage, {}));
   }
 };

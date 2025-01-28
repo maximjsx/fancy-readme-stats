@@ -55,6 +55,7 @@ export default async (req, res) => {
   }
 
   try {
+
     const repoData = await fetchRepo(username, repo);
 
     let cacheSeconds = clampValue(

@@ -133,6 +133,7 @@ class Card {
   }
 
   renderParallaxBackground() {
+
     if (this.colors.bgColor !== "transparent") {
       return "";
     }
@@ -148,6 +149,7 @@ class Card {
 
 
   getAnimations() {
+
     return `
 
     @keyframes leafFall {
@@ -285,6 +287,7 @@ class Card {
   }
 
   render(body) {
+
     return `
       <svg
         width="${this.width}"
