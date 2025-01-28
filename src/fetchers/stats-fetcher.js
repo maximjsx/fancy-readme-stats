@@ -20,9 +20,7 @@ const GRAPHQL_REPOS_FIELD = `
     totalCount
     nodes {
       name
-      stargazers {
-        totalCount
-      }
+      stargazers { totalCount }
     }
     pageInfo {
       hasNextPage
@@ -45,33 +43,17 @@ const GRAPHQL_STATS_QUERY = `
       name
       login
       contributionsCollection {
-        totalCommitContributions,
+        totalCommitContributions
         totalPullRequestReviewContributions
       }
-      repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-        totalCount
-      }
-      pullRequests(first: 1) {
-        totalCount
-      }
-      mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
-        totalCount
-      }
-      openIssues: issues(states: OPEN) {
-        totalCount
-      }
-      closedIssues: issues(states: CLOSED) {
-        totalCount
-      }
-      followers {
-        totalCount
-      }
-      repositoryDiscussions @include(if: $includeDiscussions) {
-        totalCount
-      }
-      repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
-        totalCount
-      }
+      repositoriesContributedTo(first: 1) { totalCount }
+      pullRequests(first: 1) { totalCount }
+      mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) { totalCount }
+      openIssues: issues(states: OPEN) { totalCount }
+      closedIssues: issues(states: CLOSED) { totalCount }
+      followers { totalCount }
+      repositoryDiscussions @include(if: $includeDiscussions) { totalCount }
+      repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) { totalCount }
       ${GRAPHQL_REPOS_FIELD}
     }
   }
@@ -97,6 +79,7 @@ const fetcher = (variables, token) => {
     },
     {
       Authorization: `bearer ${token}`,
+      timeout: 10000, //10 second timeout
     },
   );
 };
@@ -119,40 +102,45 @@ const statsFetcher = async ({
   includeDiscussions,
   includeDiscussionsAnswers,
 }) => {
-  let stats;
-  let hasNextPage = true;
-  let endCursor = null;
-  while (hasNextPage) {
-    const variables = {
-      login: username,
-      first: 100,
-      after: endCursor,
-      includeMergedPullRequests,
-      includeDiscussions,
-      includeDiscussionsAnswers,
-    };
-    let res = await retryer(fetcher, variables);
-    if (res.data.errors) {
-      return res;
-    }
+  const initialVariables = {
+    login: username,
+    first: 100,
+    includeMergedPullRequests,
+    includeDiscussions,
+    includeDiscussionsAnswers,
+  };
 
-    // Store stats data.
-    const repoNodes = res.data.data.user.repositories.nodes;
-    if (stats) {
-      stats.data.data.user.repositories.nodes.push(...repoNodes);
-    } else {
-      stats = res;
-    }
+  let stats = await retryer(fetcher, initialVariables);
+  if (stats.data.errors) {
+    return stats;
+  }
 
-    // Disable multi page fetching on public Vercel instance due to rate limits.
-    const repoNodesWithStars = repoNodes.filter(
-      (node) => node.stargazers.totalCount !== 0,
-    );
-    hasNextPage =
-      process.env.FETCH_MULTI_PAGE_STARS === "true" &&
-      repoNodes.length === repoNodesWithStars.length &&
-      res.data.data.user.repositories.pageInfo.hasNextPage;
-    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
+  if (process.env.FETCH_MULTI_PAGE_STARS === "true") {
+    const pageInfo = stats.data.data.user.repositories.pageInfo;
+    if (pageInfo.hasNextPage) {
+      const promises = [];
+      let currentCursor = pageInfo.endCursor;
+
+      // Fetch all remaining pages in parallel
+      while (currentCursor) {
+        const variables = {
+          login: username,
+          after: currentCursor,
+        };
+        promises.push(retryer(fetcher, variables));
+        currentCursor = null; // Will be updated if there are more pages
+      }
+
+      const results = await Promise.all(promises);
+
+      // Merge results
+      for (const res of results) {
+        if (!res.data.errors) {
+          const nodes = res.data.data.user.repositories.nodes;
+          stats.data.data.user.repositories.nodes.push(...nodes);
+        }
+      }
+    }
   }
 
   return stats;
@@ -209,7 +197,7 @@ const totalCommitsFetcher = async (username) => {
  */
 
 const statsCache = new Map();
-const CACHE_TTL = 5 * 60 * 1000; //5 minutes
+const CACHE_TTL = 60 * 60 * 1000; //60 minutes
 
 /**
  * Fetch stats for a given username.
@@ -249,7 +237,6 @@ const fetchStats = async (
   }
 
   try {
-
     trackUsername(username).catch((error) => {
       console.error("Failed to track username:", error);
     });
@@ -279,7 +266,6 @@ const fetchStats = async (
       include_all_commits ? totalCommitsFetcher(username) : Promise.resolve(0),
     ]);
 
-
     if (statsRes.data.errors) {
       logger.error(statsRes.data.errors);
       if (statsRes.data.errors[0].type === "NOT_FOUND") {
@@ -302,12 +288,10 @@ const fetchStats = async (
 
     const user = statsRes.data.data.user;
 
-
     const repoToHide = new Set(exclude_repo);
     const totalStars = user.repositories.nodes
       .filter((data) => !repoToHide.has(data.name))
       .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
-
 
     Object.assign(stats, {
       name: user.name || user.login,
@@ -349,7 +333,6 @@ const fetchStats = async (
       followers: user.followers.totalCount,
     });
 
-
     statsCache.set(cacheKey, {
       stats,
       timestamp: Date.now(),
@@ -357,7 +340,6 @@ const fetchStats = async (
 
     return stats;
   } catch (error) {
-
     statsCache.set(cacheKey, {
       error,
       timestamp: Date.now(),
