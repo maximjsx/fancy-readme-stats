@@ -15,7 +15,6 @@ import { trackUsername } from "../common/db.js";
 
 dotenv.config();
 
-// GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
   repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
     totalCount
@@ -209,6 +208,9 @@ const totalCommitsFetcher = async (username) => {
  * @typedef {import("./types").StatsData} StatsData Stats data.
  */
 
+const statsCache = new Map();
+const CACHE_TTL = 5 * 60 * 1000; //5 minutes
+
 /**
  * Fetch stats for a given username.
  *
@@ -232,108 +234,147 @@ const fetchStats = async (
     throw new MissingParamError(["username"]);
   }
 
-  try {
-    trackUsername(username);
-  } catch (error) {
-    console.error("Failed to track username:", error);
-  }
-
-  const stats = {
-    name: "",
-    totalPRs: 0,
-    totalPRsMerged: 0,
-    mergedPRsPercentage: 0,
-    totalReviews: 0,
-    totalCommits: 0,
-    totalIssues: 0,
-    totalStars: 0,
-    totalDiscussionsStarted: 0,
-    totalDiscussionsAnswered: 0,
-    contributedTo: 0,
-    rank: { level: "C", percentile: 100 },
-  };
-
-  let res = await statsFetcher({
+  const cacheKey = JSON.stringify({
     username,
-    includeMergedPullRequests: include_merged_pull_requests,
-    includeDiscussions: include_discussions,
-    includeDiscussionsAnswers: include_discussions_answers,
+    include_all_commits,
+    exclude_repo,
+    include_merged_pull_requests,
+    include_discussions,
+    include_discussions_answers,
   });
 
-  // Catch GraphQL errors.
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    if (res.data.errors[0].type === "NOT_FOUND") {
+  const cachedData = statsCache.get(cacheKey);
+  if (cachedData && Date.now() - cachedData.timestamp < CACHE_TTL) {
+    return cachedData.stats;
+  }
+
+  try {
+
+    trackUsername(username).catch((error) => {
+      console.error("Failed to track username:", error);
+    });
+
+    const stats = {
+      name: "",
+      totalPRs: 0,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
+      totalReviews: 0,
+      totalCommits: 0,
+      totalIssues: 0,
+      totalStars: 0,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
+      contributedTo: 0,
+      rank: { level: "C", percentile: 100 },
+    };
+
+    const [statsRes, totalCommits] = await Promise.all([
+      statsFetcher({
+        username,
+        includeMergedPullRequests: include_merged_pull_requests,
+        includeDiscussions: include_discussions,
+        includeDiscussionsAnswers: include_discussions_answers,
+      }),
+      include_all_commits ? totalCommitsFetcher(username) : Promise.resolve(0),
+    ]);
+
+
+    if (statsRes.data.errors) {
+      logger.error(statsRes.data.errors);
+      if (statsRes.data.errors[0].type === "NOT_FOUND") {
+        throw new CustomError(
+          statsRes.data.errors[0].message || "Could not fetch user.",
+          CustomError.USER_NOT_FOUND,
+        );
+      }
+      if (statsRes.data.errors[0].message) {
+        throw new CustomError(
+          wrapTextMultiline(statsRes.data.errors[0].message, 90, 1)[0],
+          statsRes.statusText,
+        );
+      }
       throw new CustomError(
-        res.data.errors[0].message || "Could not fetch user.",
-        CustomError.USER_NOT_FOUND,
+        "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
+        CustomError.GRAPHQL_ERROR,
       );
     }
-    if (res.data.errors[0].message) {
-      throw new CustomError(
-        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
-        res.statusText,
-      );
+
+    const user = statsRes.data.data.user;
+
+
+    const repoToHide = new Set(exclude_repo);
+    const totalStars = user.repositories.nodes
+      .filter((data) => !repoToHide.has(data.name))
+      .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
+
+
+    Object.assign(stats, {
+      name: user.name || user.login,
+      totalCommits: include_all_commits
+        ? totalCommits
+        : user.contributionsCollection.totalCommitContributions,
+      totalPRs: user.pullRequests.totalCount,
+      totalReviews:
+        user.contributionsCollection.totalPullRequestReviewContributions,
+      totalIssues: user.openIssues.totalCount + user.closedIssues.totalCount,
+      contributedTo: user.repositoriesContributedTo.totalCount,
+      totalStars,
+    });
+
+    if (include_merged_pull_requests) {
+      stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+      stats.mergedPRsPercentage =
+        (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) *
+        100;
     }
-    throw new CustomError(
-      "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
-      CustomError.GRAPHQL_ERROR,
-    );
+
+    if (include_discussions) {
+      stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+    }
+
+    if (include_discussions_answers) {
+      stats.totalDiscussionsAnswered =
+        user.repositoryDiscussionComments.totalCount;
+    }
+
+    stats.rank = calculateRank({
+      all_commits: include_all_commits,
+      commits: stats.totalCommits,
+      prs: stats.totalPRs,
+      reviews: stats.totalReviews,
+      issues: stats.totalIssues,
+      repos: user.repositories.totalCount,
+      stars: stats.totalStars,
+      followers: user.followers.totalCount,
+    });
+
+
+    statsCache.set(cacheKey, {
+      stats,
+      timestamp: Date.now(),
+    });
+
+    return stats;
+  } catch (error) {
+
+    statsCache.set(cacheKey, {
+      error,
+      timestamp: Date.now(),
+    });
+    throw error;
   }
-
-  const user = res.data.data.user;
-
-  stats.name = user.name || user.login;
-
-  // if include_all_commits, fetch all commits using the REST API.
-  if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
-  } else {
-    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
-  }
-
-  stats.totalPRs = user.pullRequests.totalCount;
-  if (include_merged_pull_requests) {
-    stats.totalPRsMerged = user.mergedPullRequests.totalCount;
-    stats.mergedPRsPercentage =
-      (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
-  }
-  stats.totalReviews =
-    user.contributionsCollection.totalPullRequestReviewContributions;
-  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
-  if (include_discussions) {
-    stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
-  }
-  if (include_discussions_answers) {
-    stats.totalDiscussionsAnswered =
-      user.repositoryDiscussionComments.totalCount;
-  }
-  stats.contributedTo = user.repositoriesContributedTo.totalCount;
-
-  // Retrieve stars while filtering out repositories to be hidden.
-  let repoToHide = new Set(exclude_repo);
-
-  stats.totalStars = user.repositories.nodes
-    .filter((data) => {
-      return !repoToHide.has(data.name);
-    })
-    .reduce((prev, curr) => {
-      return prev + curr.stargazers.totalCount;
-    }, 0);
-
-  stats.rank = calculateRank({
-    all_commits: include_all_commits,
-    commits: stats.totalCommits,
-    prs: stats.totalPRs,
-    reviews: stats.totalReviews,
-    issues: stats.totalIssues,
-    repos: user.repositories.totalCount,
-    stars: stats.totalStars,
-    followers: user.followers.totalCount,
-  });
-
-  return stats;
 };
+
+//cache cleanup
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, value] of statsCache.entries()) {
+    if (now - value.timestamp > CACHE_TTL) {
+      statsCache.delete(key);
+    }
+  }
+}, CACHE_TTL);
 
 export { fetchStats };
 export default fetchStats;
