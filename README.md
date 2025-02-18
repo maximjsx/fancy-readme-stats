@@ -1,6 +1,6 @@
 <div align="center"><sup>Based on <a href="https://github.com/anuraghazra/github-readme-stats">anuraghazra/github-readme-stats</a></sup></div>
 
-[![Example card](https://fancy-readme-stats.vercel.app/api/pin-wide/?username=maximjsx&repo=fancy-readme-stats&dark_bg=3&theme=forest_winter&footer=Add%20this%20to%20your%20own%20readme%20:%29&title=✨%20𝕱𝖆𝖓𝖈𝖞%20𝕮𝖆𝖗𝖉𝖘%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text.%0A%208%20animated%20parallax%20backgrounds.)](https://github.com/maximjsx/fancy-readme-stats)
+[![Example card](https://stats.maximjsx.com/api/pin-wide/?username=maximjsx&repo=fancy-readme-stats&dark_bg=3&theme=forest_winter&footer=Add%20this%20to%20your%20own%20readme%20:%29&title=✨%20𝕱𝖆𝖓𝖈𝖞%20𝕮𝖆𝖗𝖉𝖘%20✨&description=Animated%20GitHub%20profile%20cards%20displaying%20stats%2c%20custom%20text.%0A%208%20animated%20parallax%20backgrounds.)](https://github.com/maximjsx/fancy-readme-stats)
 
 **What is different in this fork?**
 - Animated parallax backgrounds for every card
@@ -13,7 +13,7 @@
 To use this card in your GitHub profile README, add the following Markdown snippet to your README file:
 
 ```markdown
-[![Fancy Profile Card](https://fancy-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&theme=beach&footer=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/maximjsx/fancy-readme-stats)
+[![Fancy Profile Card](https://stats.maximjsx.com/api?username=YOUR_GITHUB_USERNAME&theme=beach&footer=your@email.com&show_icons=true&title=Your%20name&description=Your%20description&include_all_commits=true&show_icons=true)](https://github.com/maximjsx/fancy-readme-stats)
 ```
 
 ### Special characters
@@ -55,14 +55,14 @@ To use this card in your GitHub profile README, add the following Markdown snipp
 [Here is a list of **all** themes](/themes/index.js) also the not animated ones.
 
 ### Preview:
-[![Beach](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=beach&hide_border=true&description=beach&title=Theme&show_icons=true&include_all_commits=false&hide=stars,contribs,issues,commits,prs,prs_merged&height=170)](https://github.com/maximjsx/fancy-readme-stats)
-[![City](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=city&hide_border=true&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=city&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
-[![Forest](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=forest&hide_border=true&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=forest&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
-[![Forest Winter](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=forest_winter&hide_border=true&description=forest%5Fwinter&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
-[![Forest Autumn](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=forest_autumn&hide_border=true&description=forest_autumn&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false&u=1)](https://github.com/maximjsx/fancy-readme-stats)
-[![Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=rain&hide_border=true&description=rain&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
-[![Red Rain](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=red_rain&hide_border=true&description=red_rain&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
-[![Snow](https://fancy-readme-stats.vercel.app/api?card=1&username=maximjsx&theme=snow&hide_border=true&description=snow&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Beach](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=beach&hide_border=true&description=beach&title=Theme&show_icons=true&include_all_commits=false&hide=stars,contribs,issues,commits,prs,prs_merged&height=170)](https://github.com/maximjsx/fancy-readme-stats)
+[![City](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=city&hide_border=true&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=city&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Forest](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=forest&hide_border=true&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&description=forest&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Forest Winter](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=forest_winter&hide_border=true&description=forest%5Fwinter&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Forest Autumn](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=forest_autumn&hide_border=true&description=forest_autumn&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false&u=1)](https://github.com/maximjsx/fancy-readme-stats)
+[![Rain](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=rain&hide_border=true&description=rain&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Red Rain](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=red_rain&hide_border=true&description=red_rain&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
+[![Snow](https://stats.maximjsx.com/api?card=1&username=maximjsx&theme=snow&hide_border=true&description=snow&hide=stars,contribs,issues,commits,prs,prs_merged&height=170&title=Theme&show_icons=true&include_all_commits=false)](https://github.com/maximjsx/fancy-readme-stats)
 
 ### Stats card Parameters
 | Parameter | Type | Description |
@@ -87,12 +87,12 @@ There are also other cards than the stats card above.
 
 ### Repository
 <a href="https://github.com/maximjsx/fancy-readme-stats">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/pin/?username=maximjsx&repo=fancy-readme-stats&theme=snow&dark_bg=7&show_icons=true&update=8" />
+  <img align="center" src="https://stats.maximjsx.com/api/pin/?username=maximjsx&repo=fancy-readme-stats&theme=snow&dark_bg=7&show_icons=true&update=8" />
 </a>
 
 ### Gists
 <a href="https://gist.github.com/maximjsx/437532d7b08f7e54c2bb7147828ab0e7/">
-  <img align="center" src="https://fancy-readme-stats.vercel.app/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true" />
+  <img align="center" src="https://stats.maximjsx.com/api/gist?id=437532d7b08f7e54c2bb7147828ab0e7&theme=snow&dark_bg=7&show_icons=true" />
 </a>
 
 <br><br>
