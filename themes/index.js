@@ -157,7 +157,7 @@ export const themes = {
     title_color: "255732",
     icon_color: "255732",
     text_color: "255732",
-    bg_color: "040f0f",
+    bg_color: "000000",
   },
   algolia: {
     title_color: "00AEFF",
