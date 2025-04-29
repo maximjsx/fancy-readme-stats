@@ -153,6 +153,12 @@ export const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
+  "dark-green": {
+    title_color: "255732",
+    icon_color: "255732",
+    text_color: "255732",
+    bg_color: "040f0f",
+  },
   algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
