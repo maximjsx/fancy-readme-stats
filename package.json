@@ -35,7 +35,7 @@
     "color-contrast-checker": "^2.1.0",
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-jsdoc": "^50.6.9",
+    "eslint-plugin-jsdoc": "^50.6.17",
     "globals": "^16.2.0",
     "hjson": "^3.2.2",
     "js-yaml": "^4.1.0",
