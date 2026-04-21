@@ -121,19 +121,19 @@ const statsFetcher = async ({
       const promises = [];
       let currentCursor = pageInfo.endCursor;
 
-      // Fetch all remaining pages in parallel
+
       while (currentCursor) {
         const variables = {
           login: username,
           after: currentCursor,
         };
         promises.push(retryer(fetcher, variables));
-        currentCursor = null; // Will be updated if there are more pages
+        currentCursor = null; 
       }
 
       const results = await Promise.all(promises);
 
-      // Merge results
+  
       for (const res of results) {
         if (!res.data.errors) {
           const nodes = res.data.data.user.repositories.nodes;
@@ -237,9 +237,7 @@ const fetchStats = async (
   }
 
   try {
-    trackUsername(username).catch((error) => {
-      console.error("Failed to track username:", error);
-    });
+
 
     const stats = {
       name: "",

@@ -100,12 +100,7 @@ const fetchRepo = async (username, reponame) => {
 
   try {
 
-    Promise.all([
-      trackUsername(username),
-      trackRepository(username, reponame),
-    ]).catch((error) => {
-      console.error("Failed to track username or repository:", error);
-    });
+ 
 
     const res = await retryer(fetcher, { login: username, repo: reponame });
     const data = res.data.data;

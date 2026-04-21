@@ -74,7 +74,7 @@ export default async (req, res) => {
         show_icons: parseBoolean(show_icons),
         hide_border: parseBoolean(hide_border),
         card_width: 10,
-        include_all_commits: parseBoolean(include_all_commits),
+        include_all_commits: parseBoolean(include_all_commits) || false,
         text_bold: parseBoolean(text_bold),
         hide_title: parseBoolean(hide_title),
         theme,
